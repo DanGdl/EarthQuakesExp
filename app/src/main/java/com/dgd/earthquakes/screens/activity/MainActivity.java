@@ -6,21 +6,18 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import com.dgd.earthquakes.R;
-import com.dgd.earthquakes.data.database.SQLiteManager;
 import com.dgd.earthquakes.databinding.ActivityMainBinding;
 import com.dgd.earthquakes.models.IQuake;
-import com.dgd.earthquakes.data.network.NetworkManager;
-import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
-import com.dgd.earthquakes.data.network.infra.QuakeData;
+import com.dgd.earthquakes.network.callback.IQuakesCallbackListener;
+import com.dgd.earthquakes.network.infra.QuakeData;
 import com.dgd.earthquakes.screens.fragments.IEarthQuakesFragment;
 import com.dgd.earthquakes.screens.interfaces.IEarthquakesFragmentHost;
 import com.dgd.earthquakes.screens.interfaces.IQuakesUpdated;
-import com.google.android.agera.Updatable;
 
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements IEarthquakesFragmentHost, Updatable {
+public class MainActivity extends BaseActivity implements IEarthquakesFragmentHost {
 	private ActivityMainBinding mBinding;
     private IEarthQuakesFragment mFragment;
 
@@ -36,27 +33,14 @@ public class MainActivity extends BaseActivity implements IEarthquakesFragmentHo
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        getRepository().subscribeToEarthquakes(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        getRepository().unsubscribeFromEarthquakes(this);
-    }
-
-    @Override
 	public void getEarthQuakes() {
         // todo add query params
-		mFragment.updateEarthQuakes(SQLiteManager.getInstance().getQuakesBulk(0));
+		mFragment.updateEarthQuakes(getDB().getQuakesBulk(0));
 	}
 
 	@Override
     public void refreshEarthQuakes(final IQuakesUpdated listener) {
-//        getRepository().checkNewEarthquakes();
-        NetworkManager.getInstance().checkNewEarthquakes(new IQuakesCallbackListener() {
+        getNetwork().checkNewEarthquakes(new IQuakesCallbackListener() {
             @Override
             public void onNetworkError(String errorMessage, int errorCode) {
                 showMessage("Shit happens! " + errorMessage);
@@ -64,20 +48,20 @@ public class MainActivity extends BaseActivity implements IEarthquakesFragmentHo
 
             @Override
             public void onNetworkSuccess(List<QuakeData> quakes) {
-                SQLiteManager.getInstance().saveQuakes(quakes);
-                listener.quakesUpdated(SQLiteManager.getInstance().getQuakesBulk(0));
+                getDB().saveQuakes(quakes);
+                listener.quakesUpdated(getDB().getQuakesBulk(0));
             }
         });
     }
 
     @Override
     public void getNextBulk(final long lastDate, final IQuakesUpdated listener) {
-        final List<IQuake> quakeModels = SQLiteManager.getInstance().getQuakesBulk(lastDate);
+        final List<IQuake> quakeModels = getDB().getQuakesBulk(lastDate);
         if(quakeModels.isEmpty()){
             Date end = new Date(lastDate);
             Date start = new Date(lastDate);
             start.setDate(start.getDate() - 2);
-            NetworkManager.getInstance().getEarthquakes(start, end, new IQuakesCallbackListener() {
+            getNetwork().getEarthquakes(start, end, new IQuakesCallbackListener() {
                 @Override
                 public void onNetworkError(String errorMessage, int errorCode) {
                     showMessage("Shit happens! " + errorMessage);
@@ -85,8 +69,8 @@ public class MainActivity extends BaseActivity implements IEarthquakesFragmentHo
 
                 @Override
                 public void onNetworkSuccess(List<QuakeData> quakes) {
-                    SQLiteManager.getInstance().saveQuakes(quakes);
-                    quakeModels.addAll(SQLiteManager.getInstance().getQuakesBulk(lastDate));
+                    getDB().saveQuakes(quakes);
+                    quakeModels.addAll(getDB().getQuakesBulk(lastDate));
                     listener.quakesUpdated(quakeModels);
                 }
             });
@@ -94,11 +78,5 @@ public class MainActivity extends BaseActivity implements IEarthquakesFragmentHo
         else{
             listener.quakesUpdated(quakeModels);
         }
-    }
-
-    @Override
-    public void update() {
-        List<IQuake> quakes = getRepository().getEarthQuakesRepository().get().get();
-        mFragment.updateEarthQuakes(quakes);
     }
 }

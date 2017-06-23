@@ -1,4 +1,4 @@
-package com.dgd.earthquakes.data.database;
+package com.dgd.earthquakes.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,9 +10,9 @@ import android.util.Log;
 import com.dgd.earthquakes.BaseApplication;
 import com.dgd.earthquakes.models.IQuake;
 import com.dgd.earthquakes.models.Quake;
-import com.dgd.earthquakes.data.network.infra.Geometry;
-import com.dgd.earthquakes.data.network.infra.Properties;
-import com.dgd.earthquakes.data.network.infra.QuakeData;
+import com.dgd.earthquakes.network.infra.Geometry;
+import com.dgd.earthquakes.network.infra.Properties;
+import com.dgd.earthquakes.network.infra.QuakeData;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +22,7 @@ import java.util.List;
  * Created by Max on 30-Apr-17.
  */
 
-public class SQLiteManager {
+public class SQLiteManager implements IDataBase {
     private static SQLiteManager mInstance = new SQLiteManager(BaseApplication.getInstance());
     private DBHelper mDbHelper;
 

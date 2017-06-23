@@ -1,4 +1,4 @@
-package com.dgd.earthquakes.data.network;
+package com.dgd.earthquakes.network;
 
 /**
  * Created by Max on 30-Apr-17.

@@ -1,21 +1,16 @@
-package com.dgd.earthquakes.data.network;
+package com.dgd.earthquakes.network;
 
-import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
-import com.dgd.earthquakes.data.network.callback.QuakesCallback;
-import com.dgd.earthquakes.data.network.infra.QuakesResponse;
-import com.dgd.earthquakes.models.IQuake;
+import com.dgd.earthquakes.network.callback.IQuakesCallbackListener;
+import com.dgd.earthquakes.network.callback.QuakesCallback;
+import com.dgd.earthquakes.network.infra.QuakesResponse;
 import com.dgd.earthquakes.util.SharedPrefsManager;
-import com.google.android.agera.Result;
-import com.google.android.agera.Supplier;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-import me.drakeet.retrofit2.adapter.agera.AgeraCallAdapterFactory;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -23,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by Max on 30-Apr-17.
  */
-public class NetworkManager {
+public class NetworkManager implements INetworkManager {
     private static NetworkManager ourInstance = new NetworkManager();
     private final IQuakesAPI mRetrofitInterface;
     private final SimpleDateFormat mSDF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); // 2017-05-02T10:52:57

@@ -4,12 +4,9 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import com.dgd.earthquakes.R;
-import com.dgd.earthquakes.data.database.SQLiteManager;
 import com.dgd.earthquakes.databinding.ActivitySplashBinding;
-import com.dgd.earthquakes.data.network.NetworkManager;
-import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
-import com.dgd.earthquakes.data.network.infra.QuakeData;
-import com.dgd.earthquakes.util.SharedPrefsManager;
+import com.dgd.earthquakes.network.callback.IQuakesCallbackListener;
+import com.dgd.earthquakes.network.infra.QuakeData;
 
 import java.util.Date;
 import java.util.List;
@@ -30,7 +27,7 @@ public class SplashActivity extends BaseActivity implements IQuakesCallbackListe
     }
 
     private void updateQuakes() {
-        NetworkManager.getInstance().checkNewEarthquakes(this);
+        getNetwork().checkNewEarthquakes(this);
     }
 
     @Override
@@ -40,8 +37,8 @@ public class SplashActivity extends BaseActivity implements IQuakesCallbackListe
 
     @Override
     public void onNetworkSuccess(List<QuakeData> quakes) {
-        SharedPrefsManager.getInstance().saveLastUpdateDate(new Date().getTime());
-        SQLiteManager.getInstance().saveQuakes(quakes);
+        getPrefs().saveLastUpdateDate(new Date().getTime());
+        getDB().saveQuakes(quakes);
     }
 
     @Override

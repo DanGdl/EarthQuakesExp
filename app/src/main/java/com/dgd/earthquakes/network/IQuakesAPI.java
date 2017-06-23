@@ -1,12 +1,6 @@
-package com.dgd.earthquakes.data.network;
+package com.dgd.earthquakes.network;
 
-import com.dgd.earthquakes.data.network.callback.QuakesCallback;
-import com.dgd.earthquakes.data.network.infra.QuakesResponse;
-import com.dgd.earthquakes.models.IQuake;
-import com.google.android.agera.Result;
-import com.google.android.agera.Supplier;
-
-import java.util.List;
+import com.dgd.earthquakes.network.infra.QuakesResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

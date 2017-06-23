@@ -8,7 +8,7 @@ import com.dgd.earthquakes.BaseApplication;
 /**
  * Created by Max on 02-May-17.
  */
-public class SharedPrefsManager {
+public class SharedPrefsManager implements IPrefs {
     private static final String LAST_UPDATE = "last_update";
     private static SharedPrefsManager ourInstance = new SharedPrefsManager();
     private SharedPreferences mPrefs;

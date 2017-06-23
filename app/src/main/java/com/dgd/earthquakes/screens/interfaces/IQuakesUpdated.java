@@ -1,7 +1,6 @@
 package com.dgd.earthquakes.screens.interfaces;
 
 import com.dgd.earthquakes.models.IQuake;
-import com.dgd.earthquakes.models.Quake;
 
 import java.util.List;
 
