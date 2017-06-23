@@ -5,22 +5,23 @@ import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.lang.ref.WeakReference;
+import com.dgd.earthquakes.data.IRepo;
+import com.dgd.earthquakes.screens.activity.BaseActivity;
 
-import io.realm.Realm;
+import java.lang.ref.WeakReference;
 
 /**
  * Created by dan on 24/05/16.
  */
 class LifeCycleListener implements Application.ActivityLifecycleCallbacks {
-    private WeakReference mCurrentActivity;
+    private WeakReference<BaseActivity> mCurrentActivity;
     private boolean isResumed = false;
     private boolean isStarted = false;
     private boolean isInBackground = true;
-    private Realm realm;
+    private IRepo repository;
 
-    public LifeCycleListener(Realm realm) {
-        this.realm = realm;
+    public LifeCycleListener(IRepo repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -55,12 +56,15 @@ class LifeCycleListener implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        Log.e("EARTH", "ACTIVITY DESTROYED!");
+        Log.e("EARTH", "ACTIVITY DESTROYED! " + activity.getClass().getSimpleName());
+        if(!isResumed && !isStarted) {
+            repository.closeRealm();
+        }
     }
 
-    public Activity getCurrentActivity() {
+    public BaseActivity getCurrentActivity() {
         if(mCurrentActivity.get() != null)
-            return (Activity) mCurrentActivity.get();
+            return mCurrentActivity.get();
         return null;
     }
 

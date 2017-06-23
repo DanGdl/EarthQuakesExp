@@ -10,58 +10,62 @@ import android.view.ViewGroup;
 import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.databinding.QuakeDetailsBinding;
 import com.dgd.earthquakes.models.IQuake;
+import com.dgd.earthquakes.models.Quake;
 import com.dgd.earthquakes.screens.dialogs.QuakeDialog;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Locale;
+
+import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
 
 /**
  * Created by Max on 01-May-17.
  */
-public class EarthQuakesAdapter extends RecyclerView.Adapter<EarthQuakesAdapter.QuakeVH> {
+public class EarthQuakesAdapter extends RecyclerView.Adapter<EarthQuakesAdapter.QuakeVH> implements RealmChangeListener<RealmResults<Quake>> {
     private static SimpleDateFormat mSDF = new SimpleDateFormat("HH:mm, yyyy.MM.dd", Locale.getDefault());
-    private Context mContext;
-    private List<IQuake> mQuakes;
+    private Context context;
+    private RealmResults<Quake> quakes;
 
     public EarthQuakesAdapter(Context context) {
-        mContext = context;
+        this.context = context;
     }
 
     @Override
     public QuakeVH onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
+        LayoutInflater inflater = LayoutInflater.from(context);
         QuakeDetailsBinding cardBinding = DataBindingUtil.inflate(inflater, R.layout.quake_details, parent, false);
         return new QuakeVH(cardBinding);
     }
 
     @Override
     public void onBindViewHolder(QuakeVH holder, int position) {
-        IQuake q = mQuakes.get(position);
+        IQuake q = quakes.get(position);
         holder.mBinding.quakeTime.setText(mSDF.format(q.getDate()));
         holder.mBinding.setQuake(q);
     }
 
     @Override
     public int getItemCount() {
-        return mQuakes == null ? 0 : mQuakes.size();
+        return quakes == null ? 0 : quakes.size();
     }
 
-    public void setQuakes(List<IQuake> earthQuakes) {
-        mQuakes = earthQuakes;
+    public void setQuakes(RealmResults<Quake> earthQuakes) {
+        quakes = earthQuakes;
         notifyItemChanged(1);
         notifyDataSetChanged();
-    }
-
-    public void addQuakes(List<IQuake> quakes) {
-        int start = mQuakes.size();
-        mQuakes.addAll(quakes);
-        notifyItemRangeInserted(start, quakes.size());
+        quakes.addChangeListener(this);
     }
 
     public long getLastDate() {
-        return mQuakes.get(getItemCount() - 1).getDate().getTime();
+        return quakes.get(getItemCount() - 1).getDate().getTime();
     }
+
+    @Override
+    public void onChange(RealmResults<Quake> quakes) {
+        notifyDataSetChanged();
+    }
+
 
     class QuakeVH extends RecyclerView.ViewHolder implements View.OnClickListener {
         private QuakeDetailsBinding mBinding;
@@ -74,8 +78,8 @@ public class EarthQuakesAdapter extends RecyclerView.Adapter<EarthQuakesAdapter.
 
         @Override
         public void onClick(View v) {
-            IQuake q = mQuakes.get(getAdapterPosition());
-            QuakeDialog dialog = new QuakeDialog(mContext);
+            IQuake q = quakes.get(getAdapterPosition());
+            QuakeDialog dialog = new QuakeDialog(context);
             dialog.setQuake(q);
             dialog.show();
         }

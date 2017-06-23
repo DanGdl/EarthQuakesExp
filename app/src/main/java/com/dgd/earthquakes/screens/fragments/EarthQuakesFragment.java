@@ -15,18 +15,17 @@ import android.view.ViewGroup;
 import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.adapters.EarthQuakesAdapter;
 import com.dgd.earthquakes.databinding.FragmentEarthquakesBinding;
-import com.dgd.earthquakes.models.IQuake;
+import com.dgd.earthquakes.models.Quake;
 import com.dgd.earthquakes.screens.interfaces.IEarthquakesFragmentHost;
-import com.dgd.earthquakes.screens.interfaces.IQuakesUpdated;
 
-import java.util.List;
+import io.realm.RealmResults;
 
 /**
  * Created by Max on 01-May-17.
  */
 
 public class EarthQuakesFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener,
-        IQuakesUpdated, IEarthQuakesFragment {
+        IEarthQuakesFragment {
 
     private IEarthquakesFragmentHost mHost;
     private FragmentEarthquakesBinding mBinding;
@@ -71,12 +70,19 @@ public class EarthQuakesFragment extends BaseFragment implements SwipeRefreshLay
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if(mHost != null){
+            mBinding.earthquakeSwipe.setRefreshing(true);
             mHost.getEarthQuakes();
         }
     }
 
-    public void updateEarthQuakes(List<IQuake> quakes){
+    public void updateEarthQuakes(RealmResults<Quake> quakes){
+        mBinding.earthquakeSwipe.setRefreshing(false);
         mAdapter.setQuakes(quakes);
+    }
+
+    @Override
+    public void hideProgress() {
+        mBinding.earthquakeSwipe.setRefreshing(false);
     }
 
     private void setupRecycler() {
@@ -95,23 +101,17 @@ public class EarthQuakesFragment extends BaseFragment implements SwipeRefreshLay
     private void getNextBulk(){
         if(mHost != null){
             mBinding.earthquakeSwipe.setRefreshing(true);
-            mHost.getNextBulk(mAdapter.getLastDate(), this);
+            mHost.getNextBulk(mAdapter.getLastDate());
         }
     }
 
     @Override
     public void onRefresh() {
         if(mHost != null){
-            mHost.refreshEarthQuakes(this);
+            mHost.refreshEarthQuakes();
         }
         else {
             mBinding.earthquakeSwipe.setRefreshing(false);
         }
-    }
-
-    @Override
-    public void quakesUpdated(List<IQuake> quakes) {
-        mAdapter.addQuakes(quakes);
-        mBinding.earthquakeSwipe.setRefreshing(false);
     }
 }

@@ -1,7 +1,5 @@
 package com.dgd.earthquakes.models;
 
-import android.location.Location;
-
 import java.util.Date;
 
 import io.realm.RealmObject;
@@ -9,7 +7,8 @@ import io.realm.RealmObject;
 public class Quake extends RealmObject implements IQuake{
 
 	private Date date;
-	private Location location;
+	private double latitude;
+	private double longitude;
 	private String magnitude;
 	private String link;
 	private String id;
@@ -23,12 +22,20 @@ public class Quake extends RealmObject implements IQuake{
 		this.date = mDate;
 	}
 
-	public Location getLocation() {
-		return location;
+	public double getLatitude() {
+		return latitude;
 	}
 
-	public void setLocation(Location mLocation) {
-		this.location = mLocation;
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 	public String getMagnitude() {

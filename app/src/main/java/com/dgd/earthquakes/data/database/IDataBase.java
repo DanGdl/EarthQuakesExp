@@ -1,7 +1,7 @@
 package com.dgd.earthquakes.data.database;
 
-import com.dgd.earthquakes.models.IQuake;
 import com.dgd.earthquakes.data.network.infra.QuakeData;
+import com.dgd.earthquakes.models.IQuake;
 
 import java.util.List;
 

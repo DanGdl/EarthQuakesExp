@@ -1,8 +1,5 @@
 package com.dgd.earthquakes.data.network.infra;
 
-import android.location.Location;
-
-import com.dgd.earthquakes.models.IQuake;
 import com.dgd.earthquakes.models.Quake;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -59,8 +56,7 @@ public class QuakeData {
         q.setMagnitude("" + mProperties.getMagnitude());
 
         List<Double> coordinates = mGeometry.getCoordinates();
-        Location location = new Location(mId);
-        location.setLatitude(coordinates.get(1));
-        location.setLongitude(coordinates.get(0));
+        q.setLatitude(coordinates.get(1));
+        q.setLongitude(coordinates.get(0));
     }
 }

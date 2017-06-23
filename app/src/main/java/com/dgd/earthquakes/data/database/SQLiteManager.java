@@ -4,15 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.location.Location;
 import android.util.Log;
 
 import com.dgd.earthquakes.BaseApplication;
-import com.dgd.earthquakes.models.IQuake;
-import com.dgd.earthquakes.models.Quake;
 import com.dgd.earthquakes.data.network.infra.Geometry;
 import com.dgd.earthquakes.data.network.infra.Properties;
 import com.dgd.earthquakes.data.network.infra.QuakeData;
+import com.dgd.earthquakes.models.IQuake;
+import com.dgd.earthquakes.models.Quake;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -103,10 +102,8 @@ public class SQLiteManager implements IDataBase {
         quake.setMagnitude(c.getString(4));
         quake.setDate(new Date(c.getLong(5)));
 
-        Location loc = new Location(quake.getId());
-        loc.setLongitude(c.getDouble(6));
-        loc.setLatitude(c.getDouble(7));
-        quake.setLocation(loc);
+        quake.setLongitude(c.getDouble(6));
+        quake.setLatitude(c.getDouble(7));
 
         return quake;
     }

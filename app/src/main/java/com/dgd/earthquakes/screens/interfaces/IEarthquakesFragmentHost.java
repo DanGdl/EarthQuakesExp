@@ -7,7 +7,7 @@ package com.dgd.earthquakes.screens.interfaces;
 public interface IEarthquakesFragmentHost {
     void getEarthQuakes();
 
-    void refreshEarthQuakes(final IQuakesUpdated listener);
+    void refreshEarthQuakes();
 
-    void getNextBulk(long lastDate, IQuakesUpdated listener);
+    void getNextBulk(long lastDate);
 }

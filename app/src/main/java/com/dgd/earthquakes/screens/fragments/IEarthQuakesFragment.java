@@ -1,13 +1,15 @@
 package com.dgd.earthquakes.screens.fragments;
 
-import com.dgd.earthquakes.models.IQuake;
+import com.dgd.earthquakes.models.Quake;
 
-import java.util.List;
+import io.realm.RealmResults;
 
 /**
  * Created by Max on 22-Jun-17.
  */
 
 public interface IEarthQuakesFragment {
-    void updateEarthQuakes(List<IQuake> quakes);
+    void updateEarthQuakes(RealmResults<Quake> quakes);
+
+    void hideProgress();
 }

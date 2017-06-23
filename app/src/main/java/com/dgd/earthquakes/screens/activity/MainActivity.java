@@ -7,19 +7,11 @@ import android.os.Bundle;
 
 import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.databinding.ActivityMainBinding;
-import com.dgd.earthquakes.models.IQuake;
-import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
-import com.dgd.earthquakes.data.network.infra.QuakeData;
 import com.dgd.earthquakes.models.Quake;
 import com.dgd.earthquakes.screens.fragments.IEarthQuakesFragment;
 import com.dgd.earthquakes.screens.interfaces.IEarthquakesFragmentHost;
-import com.dgd.earthquakes.screens.interfaces.IQuakesUpdated;
-
-import java.util.Date;
-import java.util.List;
 
 import io.realm.RealmResults;
-import io.realm.Sort;
 
 public class MainActivity extends BaseActivity implements IEarthquakesFragmentHost {
 	private ActivityMainBinding mBinding;
@@ -39,49 +31,38 @@ public class MainActivity extends BaseActivity implements IEarthquakesFragmentHo
     @Override
 	public void getEarthQuakes() {
         // todo add query params
-        RealmResults<Quake> quakes = getRealm().allObjectsSorted(Quake.class, "date", Sort.ASCENDING);
-//        mFragment.updateEarthQuakes(quakes);
+        RealmResults<Quake> quakes = getRepo().getAllQuakes();
+        mFragment.updateEarthQuakes(quakes);
 	}
 
 	@Override
-    public void refreshEarthQuakes(final IQuakesUpdated listener) {
-        getNetwork().checkNewEarthquakes(new IQuakesCallbackListener() {
-            @Override
-            public void onNetworkError(String errorMessage, int errorCode) {
-                showMessage(getString(R.string.shit, errorMessage));
-            }
-
-            @Override
-            public void onNetworkSuccess(List<QuakeData> quakes) {
-                getDB().saveQuakes(quakes);
-                listener.quakesUpdated(getDB().getQuakesBulk(0));
-            }
-        });
+    public void refreshEarthQuakes() {
+        getRepo().checkNewEarthquakes();
     }
 
     @Override
-    public void getNextBulk(final long lastDate, final IQuakesUpdated listener) {
-        final List<IQuake> quakeModels = getDB().getQuakesBulk(lastDate);
-        if(quakeModels.isEmpty()){
-            Date end = new Date(lastDate);
-            Date start = new Date(lastDate);
-            start.setDate(start.getDate() - 2);
-            getNetwork().getEarthquakes(start, end, new IQuakesCallbackListener() {
-                @Override
-                public void onNetworkError(String errorMessage, int errorCode) {
-                    showMessage(getString(R.string.shit, errorMessage));
-                }
+    public void getNextBulk(final long lastDate) {
+//        if(quakeModels.isEmpty()){
+//            Date end = new Date(lastDate);
+//            Date start = new Date(lastDate);
+//            start.setDate(start.getDate() - 2);
+//            getNetwork().getEarthquakes(start, end, new IQuakesCallbackListener() {
+//                @Override
+//                public void onNetworkError(String errorMessage, int errorCode) {
+//                    showMessage(getString(R.string.shit, errorMessage));
+//                }
+//
+//                @Override
+//                public void onNetworkSuccess(List<QuakeData> quakes) {
+//                    getDB().saveQuakes(quakes);
+//                    quakeModels.addAll(getDB().getQuakesBulk(lastDate));
+//                }
+//            });
+//        }
+    }
 
-                @Override
-                public void onNetworkSuccess(List<QuakeData> quakes) {
-                    getDB().saveQuakes(quakes);
-                    quakeModels.addAll(getDB().getQuakesBulk(lastDate));
-                    listener.quakesUpdated(quakeModels);
-                }
-            });
-        }
-        else{
-            listener.quakesUpdated(quakeModels);
-        }
+    @Override
+    public void hideProgress() {
+        mFragment.hideProgress();
     }
 }
