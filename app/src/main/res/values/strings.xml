@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">EatrhQuakes</string>
+    <string name="no_earthquake_implemented">Host activity must implement IEarthquakesFragmentHost</string>
+    <string name="quake_time">Quake Time</string>
+    <string name="quake_details">Magnitude %1$s \n %2$s \n %3$s</string>
+</resources>
