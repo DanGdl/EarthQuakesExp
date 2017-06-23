@@ -2,6 +2,7 @@ package com.dgd.earthquakes.screens.fragments;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -24,7 +25,9 @@ import java.util.List;
  * Created by Max on 01-May-17.
  */
 
-public class EarthQuakesFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, IQuakesUpdated, IEarthQuakesFragment {
+public class EarthQuakesFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener,
+        IQuakesUpdated, IEarthQuakesFragment {
+
     private IEarthquakesFragmentHost mHost;
     private FragmentEarthquakesBinding mBinding;
     private EarthQuakesAdapter mAdapter;
@@ -60,6 +63,7 @@ public class EarthQuakesFragment extends BaseFragment implements SwipeRefreshLay
     }
 
     private void setupSwipe() {
+        mBinding.earthquakeSwipe.setColorSchemeColors(Color.RED, Color.BLUE, Color.YELLOW, Color.GREEN);
         mBinding.earthquakeSwipe.setOnRefreshListener(this);
     }
 
@@ -89,16 +93,16 @@ public class EarthQuakesFragment extends BaseFragment implements SwipeRefreshLay
     }
 
     private void getNextBulk(){
-//        if(mHost != null){
-//            mBinding.earthquakeSwipe.setRefreshing(true);
-//            mHost.getNextBulk(mAdapter.getLastDate(), this);
-//        }
+        if(mHost != null){
+            mBinding.earthquakeSwipe.setRefreshing(true);
+            mHost.getNextBulk(mAdapter.getLastDate(), this);
+        }
     }
 
     @Override
     public void onRefresh() {
         if(mHost != null){
-            mHost.refreshEarthQuakes();
+            mHost.refreshEarthQuakes(this);
         }
         else {
             mBinding.earthquakeSwipe.setRefreshing(false);

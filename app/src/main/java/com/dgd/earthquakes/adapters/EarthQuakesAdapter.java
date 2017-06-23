@@ -14,12 +14,13 @@ import com.dgd.earthquakes.screens.dialogs.QuakeDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Max on 01-May-17.
  */
 public class EarthQuakesAdapter extends RecyclerView.Adapter<EarthQuakesAdapter.QuakeVH> {
-    private static SimpleDateFormat mSDF = new SimpleDateFormat("HH:mm, yyyy.MM.dd");
+    private static SimpleDateFormat mSDF = new SimpleDateFormat("HH:mm, yyyy.MM.dd", Locale.getDefault());
     private Context mContext;
     private List<IQuake> mQuakes;
 
@@ -48,24 +49,24 @@ public class EarthQuakesAdapter extends RecyclerView.Adapter<EarthQuakesAdapter.
 
     public void setQuakes(List<IQuake> earthQuakes) {
         mQuakes = earthQuakes;
+        notifyItemChanged(1);
         notifyDataSetChanged();
     }
 
     public void addQuakes(List<IQuake> quakes) {
         int start = mQuakes.size();
         mQuakes.addAll(quakes);
-//        notifyDataSetChanged();
         notifyItemRangeInserted(start, quakes.size());
     }
 
     public long getLastDate() {
-        return mQuakes.get(mQuakes.size() - 1).getDate().getTime();
+        return mQuakes.get(getItemCount() - 1).getDate().getTime();
     }
 
-    public class QuakeVH extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class QuakeVH extends RecyclerView.ViewHolder implements View.OnClickListener {
         private QuakeDetailsBinding mBinding;
 
-        public QuakeVH(QuakeDetailsBinding itemView) {
+        QuakeVH(QuakeDetailsBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
             itemView.getRoot().setOnClickListener(this);
