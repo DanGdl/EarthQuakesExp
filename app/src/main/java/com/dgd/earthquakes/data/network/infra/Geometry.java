@@ -1,4 +1,4 @@
-package com.dgd.earthquakes.network.infra;
+package com.dgd.earthquakes.data.network.infra;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

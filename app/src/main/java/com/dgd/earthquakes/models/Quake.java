@@ -4,60 +4,62 @@ import android.location.Location;
 
 import java.util.Date;
 
-public class Quake implements IQuake{
+import io.realm.RealmObject;
 
-	private Date mDate;
-	private Location mLocation;
-	private String mMagnitude;
-	private String mLink;
-	private String mId;
-	private String mTitle;
+public class Quake extends RealmObject implements IQuake{
+
+	private Date date;
+	private Location location;
+	private String magnitude;
+	private String link;
+	private String id;
+	private String title;
 
 	public Date getDate() {
-		return mDate;
+		return date;
 	}
 
 	public void setDate(Date mDate) {
-		this.mDate = mDate;
+		this.date = mDate;
 	}
 
 	public Location getLocation() {
-		return mLocation;
+		return location;
 	}
 
 	public void setLocation(Location mLocation) {
-		this.mLocation = mLocation;
+		this.location = mLocation;
 	}
 
 	public String getMagnitude() {
-		return mMagnitude;
+		return magnitude;
 	}
 
 	public void setMagnitude(String mMagnitude) {
-		this.mMagnitude = mMagnitude;
+		this.magnitude = mMagnitude;
 	}
 
 	public String getLink() {
-		return mLink;
+		return link;
 	}
 
 	public void setLink(String mLink) {
-		this.mLink = mLink;
+		this.link = mLink;
 	}
 
 	public String getId() {
-		return mId;
+		return id;
 	}
 
 	public void setId(String mId) {
-		this.mId = mId;
+		this.id = mId;
 	}
 
 	public String getTitle() {
-		return mTitle;
+		return title;
 	}
 
 	public void setTitle(String mTitle) {
-		this.mTitle = mTitle;
+		this.title = mTitle;
 	}
 }

@@ -1,8 +1,8 @@
-package com.dgd.earthquakes.network;
+package com.dgd.earthquakes.data.network;
 
-import com.dgd.earthquakes.network.callback.IQuakesCallbackListener;
-import com.dgd.earthquakes.network.callback.QuakesCallback;
-import com.dgd.earthquakes.network.infra.QuakesResponse;
+import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
+import com.dgd.earthquakes.data.network.callback.QuakesCallback;
+import com.dgd.earthquakes.data.network.infra.QuakesResponse;
 import com.dgd.earthquakes.util.SharedPrefsManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

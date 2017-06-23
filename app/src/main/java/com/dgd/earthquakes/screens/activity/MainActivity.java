@@ -8,14 +8,18 @@ import android.os.Bundle;
 import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.databinding.ActivityMainBinding;
 import com.dgd.earthquakes.models.IQuake;
-import com.dgd.earthquakes.network.callback.IQuakesCallbackListener;
-import com.dgd.earthquakes.network.infra.QuakeData;
+import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
+import com.dgd.earthquakes.data.network.infra.QuakeData;
+import com.dgd.earthquakes.models.Quake;
 import com.dgd.earthquakes.screens.fragments.IEarthQuakesFragment;
 import com.dgd.earthquakes.screens.interfaces.IEarthquakesFragmentHost;
 import com.dgd.earthquakes.screens.interfaces.IQuakesUpdated;
 
 import java.util.Date;
 import java.util.List;
+
+import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class MainActivity extends BaseActivity implements IEarthquakesFragmentHost {
 	private ActivityMainBinding mBinding;
@@ -35,7 +39,8 @@ public class MainActivity extends BaseActivity implements IEarthquakesFragmentHo
     @Override
 	public void getEarthQuakes() {
         // todo add query params
-		mFragment.updateEarthQuakes(getDB().getQuakesBulk(0));
+        RealmResults<Quake> quakes = getRealm().allObjectsSorted(Quake.class, "date", Sort.ASCENDING);
+//        mFragment.updateEarthQuakes(quakes);
 	}
 
 	@Override
@@ -43,7 +48,7 @@ public class MainActivity extends BaseActivity implements IEarthquakesFragmentHo
         getNetwork().checkNewEarthquakes(new IQuakesCallbackListener() {
             @Override
             public void onNetworkError(String errorMessage, int errorCode) {
-                showMessage("Shit happens! " + errorMessage);
+                showMessage(getString(R.string.shit, errorMessage));
             }
 
             @Override
@@ -64,7 +69,7 @@ public class MainActivity extends BaseActivity implements IEarthquakesFragmentHo
             getNetwork().getEarthquakes(start, end, new IQuakesCallbackListener() {
                 @Override
                 public void onNetworkError(String errorMessage, int errorCode) {
-                    showMessage("Shit happens! " + errorMessage);
+                    showMessage(getString(R.string.shit, errorMessage));
                 }
 
                 @Override

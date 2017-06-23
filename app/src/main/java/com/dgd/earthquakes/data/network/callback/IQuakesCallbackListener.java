@@ -1,6 +1,6 @@
-package com.dgd.earthquakes.network.callback;
+package com.dgd.earthquakes.data.network.callback;
 
-import com.dgd.earthquakes.network.infra.QuakeData;
+import com.dgd.earthquakes.data.network.infra.QuakeData;
 
 import java.util.List;
 

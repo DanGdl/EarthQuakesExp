@@ -5,11 +5,17 @@ import android.os.Bundle;
 
 import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.databinding.ActivitySplashBinding;
-import com.dgd.earthquakes.network.callback.IQuakesCallbackListener;
-import com.dgd.earthquakes.network.infra.QuakeData;
+import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
+import com.dgd.earthquakes.data.network.infra.QuakeData;
+import com.dgd.earthquakes.models.IQuake;
+import com.dgd.earthquakes.models.Quake;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+
+import io.realm.Realm;
 
 /**
  * Created by Max on 01-May-17.
@@ -27,24 +33,23 @@ public class SplashActivity extends BaseActivity implements IQuakesCallbackListe
     }
 
     private void updateQuakes() {
-        getNetwork().checkNewEarthquakes(this);
+        getRepo().checkNewEarthquakes(this);
     }
 
     @Override
     public void onNetworkError(String errorMessage, int errorCode) {
-        showMessage("Shit happens! " + errorMessage);
+        showMessage(getString(R.string.shit, errorMessage));
     }
 
     @Override
     public void onNetworkSuccess(List<QuakeData> quakes) {
-        getPrefs().saveLastUpdateDate(new Date().getTime());
-        getDB().saveQuakes(quakes);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mBinding.getRoot().postDelayed(this, 3000);
+        mBinding.getRoot().postDelayed(this, 2500);
     }
 
     @Override

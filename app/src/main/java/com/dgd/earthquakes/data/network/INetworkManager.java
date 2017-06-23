@@ -1,6 +1,6 @@
-package com.dgd.earthquakes.network;
+package com.dgd.earthquakes.data.network;
 
-import com.dgd.earthquakes.network.callback.IQuakesCallbackListener;
+import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
 
 import java.util.Date;
 

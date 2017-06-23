@@ -1,6 +1,6 @@
-package com.dgd.earthquakes.network.callback;
+package com.dgd.earthquakes.data.network.callback;
 
-import com.dgd.earthquakes.network.infra.QuakesResponse;
+import com.dgd.earthquakes.data.network.infra.QuakesResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
