@@ -2,7 +2,6 @@ package com.dgd.earthquakes;
 
 import android.app.Application;
 
-import com.dgd.earthquakes.common.IFragmentHostActivity;
 import com.dgd.earthquakes.data.IRepo;
 import com.dgd.earthquakes.data.Repo;
 
@@ -30,12 +29,5 @@ public class BaseApplication extends Application{
 
     public IRepo getRepository(){
         return repository;
-    }
-
-    public IFragmentHostActivity getCurrentActivity(){
-        if(lifecycleListener != null){
-            return lifecycleListener.getCurrentActivity();
-        }
-        return null;
     }
 }

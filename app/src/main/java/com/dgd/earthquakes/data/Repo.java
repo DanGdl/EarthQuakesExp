@@ -60,11 +60,6 @@ public class Repo implements IRepo {
     }
 
     @Override
-    public void getEarthquakes() {
-
-    }
-
-    @Override
     public RealmResults<Quake> getAllQuakes() {
         openRealm();
         return realm.where(Quake.class).findAllSorted("date", Sort.DESCENDING);

@@ -1,6 +1,6 @@
 package com.dgd.earthquakes.common;
 
-import android.app.Activity;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 
 /**
@@ -12,7 +12,7 @@ public abstract class HostedFragment<T> extends Fragment implements IHostedFragm
     private boolean hasProgress;
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         host = (T) activity;
     }

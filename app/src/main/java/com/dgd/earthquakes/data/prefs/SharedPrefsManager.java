@@ -21,10 +21,6 @@ public class SharedPrefsManager implements IPrefs {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(BaseApplication.getInstance());
     }
 
-    public void putMinMagnitude(){
-
-    }
-
     public void saveLastUpdateDate(long millis){
         mPrefs.edit().putLong(LAST_UPDATE, millis).apply();
     }

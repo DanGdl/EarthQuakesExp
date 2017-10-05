@@ -3,8 +3,6 @@ package com.dgd.earthquakes.ui.quakes;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
 import android.widget.TextView;
 
 import com.dgd.earthquakes.R;
@@ -21,21 +19,10 @@ public class QuakeDialog extends Dialog {
 
     public QuakeDialog(@NonNull Context context) {
         super(context);
-        init(context);
+        init();
     }
 
-    protected QuakeDialog(@NonNull Context context, @StyleRes int themeResId) {
-        super(context, themeResId);
-        init(context);
-    }
-
-    protected QuakeDialog(@NonNull Context context, boolean cancelable, @Nullable
-            OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
-        init(context);
-    }
-
-    private void init(Context context) {
+    private void init() {
         setContentView(R.layout.dialog_quake);
 
         setTitle(R.string.quake_time);

@@ -92,12 +92,6 @@ public class NetworkManager implements INetworkManager {
         if(startDate != -1){
             cal.setTimeInMillis(startDate);
         }
-//        else{
-//            cal.set(Calendar.HOUR, 0);
-//            cal.set(Calendar.MINUTE, 0);
-//            cal.set(Calendar.SECOND, 0);
-//            cal.set(Calendar.MILLISECOND, 0);
-//        }
 
         start = mSDF.format(cal.getTime());
         getEarthquakes(start, "NOW", listener);

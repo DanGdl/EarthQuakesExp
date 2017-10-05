@@ -19,8 +19,6 @@ public interface IRepo {
 
     void checkNewEarthquakes(IQuakesCallbackListener listener);
 
-    void getEarthquakes();
-
     RealmResults<Quake> getAllQuakes();
 
     void closeRealm();

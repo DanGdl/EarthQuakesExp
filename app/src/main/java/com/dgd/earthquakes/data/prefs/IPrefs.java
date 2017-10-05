@@ -6,8 +6,6 @@ package com.dgd.earthquakes.data.prefs;
 
 public  interface IPrefs {
 
-    void putMinMagnitude();
-
     void saveLastUpdateDate(long millis);
 
     long getLastUpdateDate();

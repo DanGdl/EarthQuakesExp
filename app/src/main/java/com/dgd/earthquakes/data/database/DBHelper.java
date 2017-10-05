@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by Max on 30-Apr-17.
  */
-
+@Deprecated
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "quakes.db";
     private static final int    DATABASE_VERSION = 1;

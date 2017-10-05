@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Max on 23-Jun-17.
  */
-
+@Deprecated
 public interface IDataBase {
 
     void saveQuakes(List<QuakeData> quakes);

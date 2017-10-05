@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by Max on 30-Apr-17.
  */
-
+@Deprecated
 public class SQLiteManager implements IDataBase {
     private static SQLiteManager mInstance = new SQLiteManager(BaseApplication.getInstance());
     private DBHelper mDbHelper;
