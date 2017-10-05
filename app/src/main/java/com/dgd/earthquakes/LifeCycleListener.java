@@ -5,8 +5,8 @@ import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.dgd.earthquakes.common.IFragmentHostActivity;
 import com.dgd.earthquakes.data.IRepo;
-import com.dgd.earthquakes.screens.activity.BaseActivity;
 
 import java.lang.ref.WeakReference;
 
@@ -14,13 +14,13 @@ import java.lang.ref.WeakReference;
  * Created by dan on 24/05/16.
  */
 class LifeCycleListener implements Application.ActivityLifecycleCallbacks {
-    private WeakReference<BaseActivity> mCurrentActivity;
+    private WeakReference<IFragmentHostActivity> mCurrentActivity;
     private boolean isResumed = false;
     private boolean isStarted = false;
     private boolean isInBackground = true;
     private IRepo repository;
 
-    public LifeCycleListener(IRepo repository) {
+    LifeCycleListener(IRepo repository) {
         this.repository = repository;
     }
 
@@ -62,9 +62,10 @@ class LifeCycleListener implements Application.ActivityLifecycleCallbacks {
         }
     }
 
-    public BaseActivity getCurrentActivity() {
-        if(mCurrentActivity.get() != null)
+    public IFragmentHostActivity getCurrentActivity() {
+        if(mCurrentActivity.get() != null) {
             return mCurrentActivity.get();
+        }
         return null;
     }
 

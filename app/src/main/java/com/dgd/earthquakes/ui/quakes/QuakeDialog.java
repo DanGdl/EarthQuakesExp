@@ -1,4 +1,4 @@
-package com.dgd.earthquakes.screens.dialogs;
+package com.dgd.earthquakes.ui.quakes;
 
 import android.app.Dialog;
 import android.content.Context;

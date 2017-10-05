@@ -1,4 +1,4 @@
-package com.dgd.earthquakes.screens.fragments;
+package com.dgd.earthquakes.common;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

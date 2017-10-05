@@ -1,4 +1,4 @@
-package com.dgd.earthquakes.screens.fragments;
+package com.dgd.earthquakes.ui.quakes;
 
 import com.dgd.earthquakes.models.Quake;
 
@@ -10,6 +10,4 @@ import io.realm.RealmResults;
 
 public interface IEarthQuakesFragment {
     void updateEarthQuakes(RealmResults<Quake> quakes);
-
-    void hideProgress();
 }

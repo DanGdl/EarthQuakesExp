@@ -1,4 +1,4 @@
-package com.dgd.earthquakes.screens.fragments;
+package com.dgd.earthquakes.ui.splash;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -8,20 +8,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dgd.earthquakes.R;
+import com.dgd.earthquakes.common.HostedFragment;
 import com.dgd.earthquakes.databinding.FragmentSplashBinding;
 
 /**
  * Created by Max on 01-May-17.
  */
 
-public class SplashFragment extends BaseFragment {
+public class SplashFragment extends HostedFragment<ISplashFragmentHost> implements ISplashFragment {
 
-    private FragmentSplashBinding mBinding;
+    public static SplashFragment newInstance(){
+        return new SplashFragment();
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false);
+        FragmentSplashBinding mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false);
         return mBinding.getRoot();
     }
 }

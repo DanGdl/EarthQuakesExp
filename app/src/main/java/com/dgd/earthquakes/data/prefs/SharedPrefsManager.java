@@ -1,4 +1,4 @@
-package com.dgd.earthquakes.util;
+package com.dgd.earthquakes.data.prefs;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;

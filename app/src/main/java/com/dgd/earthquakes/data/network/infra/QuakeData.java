@@ -48,7 +48,7 @@ public class QuakeData {
         this.mGeometry = mGeometry;
     }
 
-    public void fillQuake(Quake q) {
+    public Quake fillQuake(Quake q) {
         q.setTitle(mProperties.getTitle());
         q.setDate(new Date(mProperties.getTime()));
         q.setId(mId);
@@ -58,5 +58,6 @@ public class QuakeData {
         List<Double> coordinates = mGeometry.getCoordinates();
         q.setLatitude(coordinates.get(1));
         q.setLongitude(coordinates.get(0));
+        return q;
     }
 }

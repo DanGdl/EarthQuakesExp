@@ -3,15 +3,17 @@ package com.dgd.earthquakes.models;
 import java.util.Date;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Quake extends RealmObject implements IQuake{
 
+	@PrimaryKey
+	private String id;
 	private Date date;
 	private double latitude;
 	private double longitude;
 	private String magnitude;
 	private String link;
-	private String id;
 	private String title;
 
 	public Date getDate() {
@@ -43,6 +45,9 @@ public class Quake extends RealmObject implements IQuake{
 	}
 
 	public void setMagnitude(String mMagnitude) {
+		if(mMagnitude != null && mMagnitude.length() < 4){
+			mMagnitude += "0";
+		}
 		this.magnitude = mMagnitude;
 	}
 

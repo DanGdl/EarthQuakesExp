@@ -1,9 +1,11 @@
 package com.dgd.earthquakes.data;
 
 import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
+import com.dgd.earthquakes.data.network.infra.QuakeData;
 import com.dgd.earthquakes.models.Quake;
 
 import java.util.Date;
+import java.util.List;
 
 import io.realm.RealmResults;
 
@@ -15,11 +17,15 @@ public interface IRepo {
 
     void getEarthquakes(Date start, Date end, IQuakesCallbackListener listener);
 
-    void checkNewEarthquakes();
+    void checkNewEarthquakes(IQuakesCallbackListener listener);
 
     void getEarthquakes();
 
     RealmResults<Quake> getAllQuakes();
 
     void closeRealm();
+
+    void saveLastUpdate(long time);
+
+    void saveToRealm(List<QuakeData> quakes);
 }
