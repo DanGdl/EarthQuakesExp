@@ -86,7 +86,6 @@ public abstract class FragmentHostActivity<T> extends AppCompatActivity implemen
         super.onPause();
     }
 
-    @Override
     public void showMessage(int strRes, String... args) {
         Toast.makeText(this, getString(strRes, args), Toast.LENGTH_SHORT).show();
     }

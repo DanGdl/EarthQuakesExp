@@ -22,4 +22,8 @@ public class QuakesResponse {
         }
         return mQuakes;
     }
+
+    public void setQuakes(List<QuakeData> mQuakes) {
+        this.mQuakes = mQuakes;
+    }
 }

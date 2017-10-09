@@ -25,7 +25,7 @@ public class Repo implements IRepo {
     private Realm realm;
 
     public Repo() {
-        mNetwork = NetworkManager.getInstance();
+        mNetwork = new NetworkManager();
 
         openRealm();
     }

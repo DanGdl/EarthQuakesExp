@@ -37,4 +37,8 @@ public class QuakesCallback implements Callback<QuakesResponse> {
             mListener.onNetworkError(t.getMessage(), 400);
         }
     }
+
+    public void setListener(IQuakesCallbackListener listener) {
+        this.mListener = listener;
+    }
 }

@@ -17,7 +17,7 @@ class LifeCycleListener implements Application.ActivityLifecycleCallbacks {
     private WeakReference<IFragmentHostActivity> mCurrentActivity;
     private boolean isResumed = false;
     private boolean isStarted = false;
-    private boolean isInBackground = true;
+//    private boolean isInBackground = true;
     private IRepo repository;
 
     LifeCycleListener(IRepo repository) {
@@ -31,7 +31,7 @@ class LifeCycleListener implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityStarted(Activity activity) {
-        isInBackground = false;
+//        isInBackground = false;
         isStarted = true;
     }
 
@@ -47,7 +47,7 @@ class LifeCycleListener implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityStopped(Activity activity) {
-        isInBackground = true;
+//        isInBackground = true;
         isStarted = false;
     }
 
@@ -62,22 +62,22 @@ class LifeCycleListener implements Application.ActivityLifecycleCallbacks {
         }
     }
 
-    public IFragmentHostActivity getCurrentActivity() {
-        if(mCurrentActivity.get() != null) {
-            return mCurrentActivity.get();
-        }
-        return null;
-    }
-
-    public boolean isResumed() {
-        return isResumed;
-    }
-
-    public boolean isStarted() {
-        return isStarted;
-    }
-
-    public boolean isInBackground() {
-        return isInBackground;
-    }
+//    public IFragmentHostActivity getCurrentActivity() {
+//        if(mCurrentActivity.get() != null) {
+//            return mCurrentActivity.get();
+//        }
+//        return null;
+//    }
+//
+//    public boolean isResumed() {
+//        return isResumed;
+//    }
+//
+//    public boolean isStarted() {
+//        return isStarted;
+//    }
+//
+//    public boolean isInBackground() {
+//        return isInBackground;
+//    }
 }
