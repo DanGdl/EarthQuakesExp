@@ -42,7 +42,9 @@ public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHo
     }
 
     public void updateEarthQuakes(RealmResults<Quake> quakes){
-        adapter.setItems(quakes);
+        if(adapter != null){
+            adapter.setItems(quakes);
+        }
     }
 
     @Override
