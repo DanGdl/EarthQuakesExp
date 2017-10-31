@@ -76,7 +76,9 @@ public class EarthQuakesFragment extends BaseFragment implements SwipeRefreshLay
     }
 
     public void updateEarthQuakes(List<IQuake> quakes){
-        mAdapter.setQuakes(quakes);
+        if(mAdapter != null) {
+            mAdapter.setQuakes(quakes);
+        }
     }
 
     private void setupRecycler() {
