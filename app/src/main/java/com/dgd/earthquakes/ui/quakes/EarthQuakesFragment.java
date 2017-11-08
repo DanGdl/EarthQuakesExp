@@ -3,7 +3,9 @@ package com.dgd.earthquakes.ui.quakes;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.common.CommonRecyclerAdapter;
 import com.dgd.earthquakes.common.RecyclerFragment;
 import com.dgd.earthquakes.models.Quake;
@@ -15,7 +17,7 @@ import io.realm.RealmResults;
  */
 
 public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHost, Quake> implements
-        IEarthQuakesFragment {
+        IEarthQuakesFragment, View.OnClickListener {
 
     public static EarthQuakesFragment newInstance(){
         return new EarthQuakesFragment();
@@ -34,10 +36,16 @@ public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHo
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.toolbarInc.searchBtn.setOnClickListener(this);
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if(host != null){
-            host.getEarthQuakes();
+            host.getEarthQuakes("");
         }
     }
 
@@ -57,5 +65,12 @@ public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHo
         QuakeDialog dialog = new QuakeDialog(getActivity());
         dialog.setQuake(q);
         dialog.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.searchBtn){
+            host.getEarthQuakes(binding.toolbarInc.search.getText().toString());
+        }
     }
 }

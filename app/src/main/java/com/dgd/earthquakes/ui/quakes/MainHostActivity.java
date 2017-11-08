@@ -32,8 +32,8 @@ public class MainHostActivity extends FragmentHostActivity<IQuakesListPresenter>
     }
 
     @Override
-	public void getEarthQuakes() {
-        presenter.getEarthQuakes();
+	public void getEarthQuakes(String query) {
+        presenter.getEarthQuakes(query);
 	}
 
 	@Override

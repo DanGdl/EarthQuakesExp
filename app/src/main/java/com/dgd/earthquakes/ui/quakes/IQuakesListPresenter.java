@@ -5,7 +5,7 @@ package com.dgd.earthquakes.ui.quakes;
  */
 
 interface IQuakesListPresenter {
-    void getEarthQuakes();
+    void getEarthQuakes(String query);
 
     void checkNewEarthQuakes();
 

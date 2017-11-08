@@ -22,7 +22,7 @@ public abstract class RecyclerFragment<T, X> extends HostedFragment<T> implement
         CommonRecyclerAdapter.IOnItemClickListener<X>, SwipeRefreshLayout.OnRefreshListener {
 
     protected CommonRecyclerAdapter<X> adapter;
-    private FragmentRecyclerBinding binding;
+    protected FragmentRecyclerBinding binding;
 
     @Nullable
     @Override

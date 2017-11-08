@@ -18,13 +18,15 @@ import io.realm.RealmResults;
 
 class QuakesListPresenter extends Presenter<IQuakesListView> implements IQuakesListPresenter {
 
+    private String query;
+
     public QuakesListPresenter(IQuakesListView view) {
         super(view);
     }
 
     @Override
-    public void getEarthQuakes() {
-        // todo add query params
+    public void getEarthQuakes(String query) {
+        this.query = query;
         RealmResults<Quake> quakes = getRepo().getAllQuakes();
         view.updateEarthQuakes(quakes);
     }
@@ -51,7 +53,7 @@ class QuakesListPresenter extends Presenter<IQuakesListView> implements IQuakesL
 
     @Override
     public void getNextBulk(long lastDate) {
-        if(lastDate != -1){
+        if(lastDate != -1 && (query == null || query.isEmpty())){
             view.showProgress();
             Date end = new Date(lastDate);
             Date start = new Date(lastDate);

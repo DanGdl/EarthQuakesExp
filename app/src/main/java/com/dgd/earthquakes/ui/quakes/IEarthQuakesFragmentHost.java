@@ -7,7 +7,7 @@ package com.dgd.earthquakes.ui.quakes;
 interface IEarthQuakesFragmentHost {
     void getNextBulk(long lastDate);
 
-    void getEarthQuakes();
+    void getEarthQuakes(String query);
 
     void refreshEarthQuakes();
 }
