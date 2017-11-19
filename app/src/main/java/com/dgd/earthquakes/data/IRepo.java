@@ -19,7 +19,7 @@ public interface IRepo {
 
     void checkNewEarthquakes(IQuakesCallbackListener listener);
 
-    RealmResults<Quake> getAllQuakes();
+    RealmResults<Quake> getAllQuakes(String query);
 
     void closeRealm();
 

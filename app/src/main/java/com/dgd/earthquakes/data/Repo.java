@@ -1,5 +1,7 @@
 package com.dgd.earthquakes.data;
 
+import android.text.TextUtils;
+
 import com.dgd.earthquakes.BaseApplication;
 import com.dgd.earthquakes.data.network.INetworkManager;
 import com.dgd.earthquakes.data.network.NetworkManager;
@@ -13,6 +15,7 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
@@ -60,9 +63,13 @@ public class Repo implements IRepo {
     }
 
     @Override
-    public RealmResults<Quake> getAllQuakes() {
+    public RealmResults<Quake> getAllQuakes(String query) {
         openRealm();
-        return realm.where(Quake.class).findAllSorted("date", Sort.DESCENDING);
+        RealmQuery<Quake> q = realm.where(Quake.class);
+        if(!TextUtils.isEmpty(query)){
+            q.contains("title", query);
+        }
+        return q.findAllSorted("date", Sort.DESCENDING);
     }
 
 

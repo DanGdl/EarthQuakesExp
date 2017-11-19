@@ -5,4 +5,13 @@
     <string name="quake_details">Magnitude %1$s \n %2$s \n %3$s</string>
     <string name="shit">Shit happens! %1s</string>
     <string name="empty" />
+    <string name="quake_desc">Description</string>
+    <string name="date_time">Date and Time</string>
+    <string name="magnitude">Magnitude</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="from_magnitude">From magnitude</string>
+    <string name="to_magnitude">To magnitude</string>
+    <string name="time_zero">00:00</string>
+    <string name="hint_date">dd/MM/YYYY</string>
 </resources>

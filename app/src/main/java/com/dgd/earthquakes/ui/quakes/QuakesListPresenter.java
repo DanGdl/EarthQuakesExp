@@ -20,14 +20,14 @@ class QuakesListPresenter extends Presenter<IQuakesListView> implements IQuakesL
 
     private String query;
 
-    public QuakesListPresenter(IQuakesListView view) {
+    QuakesListPresenter(IQuakesListView view) {
         super(view);
     }
 
     @Override
     public void getEarthQuakes(String query) {
         this.query = query;
-        RealmResults<Quake> quakes = getRepo().getAllQuakes();
+        RealmResults<Quake> quakes = getRepo().getAllQuakes(query);
         view.updateEarthQuakes(quakes);
     }
 

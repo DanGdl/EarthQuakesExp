@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.common.CommonRecyclerAdapter;
@@ -17,7 +18,8 @@ import io.realm.RealmResults;
  */
 
 public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHost, Quake> implements
-        IEarthQuakesFragment, View.OnClickListener {
+        IEarthQuakesFragment, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+    private static final float TRANSLATE = -500;
 
     public static EarthQuakesFragment newInstance(){
         return new EarthQuakesFragment();
@@ -39,6 +41,15 @@ public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHo
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.toolbarInc.searchBtn.setOnClickListener(this);
+        binding.toolbarInc.extensionToggle.setOnCheckedChangeListener(this);
+
+        binding.searchParams.fromTime.setOnClickListener(this);
+        binding.searchParams.fromDate.setOnClickListener(this);
+        binding.searchParams.toTime.setOnClickListener(this);
+        binding.searchParams.toDate.setOnClickListener(this);
+
+        binding.searchParams.getRoot().animate().translationYBy(TRANSLATE)
+                .setDuration(1).start();
     }
 
     @Override
@@ -50,6 +61,7 @@ public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHo
     }
 
     public void updateEarthQuakes(RealmResults<Quake> quakes){
+        binding.toolbarInc.toolbarIcon.requestFocus();
         if(adapter != null){
             adapter.setItems(quakes);
         }
@@ -71,8 +83,28 @@ public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHo
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.searchBtn){
+        int id = view.getId();
+        if(id == R.id.searchBtn){
+            // todo get search dto
             host.getEarthQuakes(binding.toolbarInc.search.getText().toString());
         }
+        else if(id == R.id.fromTime){
+            // todo show picker dialog
+        }
+        else if(id == R.id.fromDate){
+            // todo show picker dialog
+        }
+        else if(id == R.id.toTime){
+            // todo show picker dialog
+        }
+        else if(id == R.id.toDate){
+            // todo show picker dialog
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        float translateDist = b ? (-1 * TRANSLATE) : TRANSLATE;
+        binding.searchParams.getRoot().animate().translationYBy(translateDist).setDuration(300).start();
     }
 }
