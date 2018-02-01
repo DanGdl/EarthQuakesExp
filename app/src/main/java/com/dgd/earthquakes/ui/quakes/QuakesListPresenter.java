@@ -13,7 +13,8 @@ import java.util.List;
 import io.realm.RealmResults;
 
 /**
- * Created by max on 04/10/17.
+ * Created by max
+ * on 04/10/17.
  */
 
 class QuakesListPresenter extends Presenter<IQuakesListView> implements IQuakesListPresenter {

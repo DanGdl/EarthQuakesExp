@@ -14,7 +14,8 @@ import com.dgd.earthquakes.models.Quake;
 import io.realm.RealmResults;
 
 /**
- * Created by Max on 01-May-17.
+ * Created by Max
+ * on 01-May-17.
  */
 
 public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHost, Quake> implements

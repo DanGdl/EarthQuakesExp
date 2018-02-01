@@ -5,7 +5,8 @@ import android.util.AttributeSet;
 import android.widget.ToggleButton;
 
 /**
- * Created by dan on 21/03/2016.
+ * Created by dan
+ * on 21/03/2016.
  */
 public class SquareToggleButton extends ToggleButton{
 
