@@ -1,15 +1,22 @@
 package com.dgd.earthquakes.ui.quakes;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
 
 import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.common.CommonRecyclerAdapter;
 import com.dgd.earthquakes.common.RecyclerFragment;
 import com.dgd.earthquakes.models.Quake;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 import io.realm.RealmResults;
 
@@ -99,16 +106,26 @@ public class EarthQuakesFragment extends RecyclerFragment<QuackesFragmentContrac
             }
         }
         else if (id == R.id.fromTime) {
-            // todo show picker dialog
-        }
-        else if (id == R.id.fromDate) {
-            // todo show picker dialog
+            new TimePickerDialog(getActivity(), (TimePicker timePicker, int h, int m) -> {
+                binding.searchParams.fromTime.setText(String.format(Locale.getDefault(), "%1$2d : %2$2d", h, m));
+            }, 0, 0, true).show();
         }
         else if (id == R.id.toTime) {
-            // todo show picker dialog
+            new TimePickerDialog(getActivity(), (TimePicker timePicker, int h, int m) -> {
+                binding.searchParams.toTime.setText(String.format(Locale.getDefault(), "%1$2d : %2$2d", h, m));
+            }, 0, 0, true).show();
+        }
+        else if (id == R.id.fromDate) {
+            Calendar calendar = Calendar.getInstance();
+            new DatePickerDialog(getActivity(), (DatePicker datePicker, int y, int m, int d) -> {
+                binding.searchParams.fromDate.setText(String.format(Locale.getDefault(), "%1$2d.%2$2d.%3$4d", d, m, y));
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
         }
         else if (id == R.id.toDate) {
-            // todo show picker dialog
+            Calendar calendar = Calendar.getInstance();
+            new DatePickerDialog(getActivity(), (DatePicker datePicker, int y, int m, int d) -> {
+                binding.searchParams.toDate.setText(String.format(Locale.getDefault(), "%1$2d.%2$2d.%3$4d", d, m, y));
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
         }
     }
 
