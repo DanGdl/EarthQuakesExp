@@ -1,5 +1,6 @@
 package com.dgd.earthquakes.common;
 
+import android.app.ProgressDialog;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -10,11 +11,12 @@ import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.databinding.ActivityMainBinding;
 
 /**
- * Created by Dan on 25/07/2017.
+ * Created by Dan
+ * on 25/07/2017.
  */
 
 public abstract class FragmentHostActivity<T> extends AppCompatActivity implements IFragmentHostActivity {
-    private WaitDialog mProgressDialog;
+    private ProgressDialog mProgressDialog;
     private boolean onForeground = false;
     protected ActivityMainBinding binding;
     protected T presenter;
@@ -49,13 +51,15 @@ public abstract class FragmentHostActivity<T> extends AppCompatActivity implemen
 
     protected abstract HostedFragment getFirstFragment(Bundle savedInstanceState);
 
-    public void showProgress(){
+    public void showProgress(String title, String msg){
         if(currentFragment != null && currentFragment.hasProgress()){
             currentFragment.showProgress();
         }
         else {
             if(mProgressDialog == null){
-                mProgressDialog = new WaitDialog(this);
+                mProgressDialog = new ProgressDialog(this);
+                mProgressDialog.setTitle(title);
+                mProgressDialog.setMessage(msg);
             }
 
             if(onForeground && !mProgressDialog.isShowing()){
@@ -68,7 +72,7 @@ public abstract class FragmentHostActivity<T> extends AppCompatActivity implemen
         if(currentFragment != null && currentFragment.hasProgress()){
             currentFragment.hideProgress();
         }
-        if(onForeground && mProgressDialog != null && mProgressDialog.isShowing()){
+        if(mProgressDialog != null && mProgressDialog.isShowing()){
             mProgressDialog.dismiss();
             mProgressDialog = null;
         }

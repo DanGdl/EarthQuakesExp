@@ -15,7 +15,8 @@ import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.databinding.FragmentRecyclerBinding;
 
 /**
- * Created by Dan on 24/07/2017.
+ * Created by Dan
+ * on 24/07/2017.
  */
 
 public abstract class RecyclerFragment<T, X> extends HostedFragment<T> implements

@@ -23,7 +23,7 @@ public class SplashPresenter extends Presenter<SplashScreenContract.ISplashView>
 
     @Override
     public void updateQuakes() {
-        view.showProgress();
+        view.showProgress("", R.string.wait_please);
         getRepo().checkNewEarthquakes(new IQuakesCallbackListener() {
             @Override
             public void onNetworkError(String errorMessage, int errorCode) {

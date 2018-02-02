@@ -1,12 +1,13 @@
 package com.dgd.earthquakes.common;
 
 /**
- * Created by max on 04/10/17.
+ * Created by max
+ * on 04/10/17.
  */
 
 public interface IView {
 
-    void showProgress();
+    void showProgress(String title, int msgResId);
 
     void hideProgress();
 

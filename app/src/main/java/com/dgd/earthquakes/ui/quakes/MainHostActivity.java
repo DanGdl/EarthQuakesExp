@@ -50,4 +50,9 @@ public class MainHostActivity extends FragmentHostActivity<QuackesScreenContract
     public void updateEarthQuakes(RealmResults<Quake> quakes) {
         earthQuakesFragment.updateEarthQuakes(quakes);
     }
+
+    @Override
+    public void showProgress(String title, int msgResId) {
+        showProgress(title, getString(msgResId));
+    }
 }

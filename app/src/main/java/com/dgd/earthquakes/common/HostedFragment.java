@@ -4,7 +4,8 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 
 /**
- * Created by Dan on 19/07/2017.
+ * Created by Dan
+ * on 19/07/2017.
  */
 
 public abstract class HostedFragment<T> extends Fragment implements IHostedFragment {

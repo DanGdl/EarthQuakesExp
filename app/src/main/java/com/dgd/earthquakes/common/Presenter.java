@@ -4,7 +4,8 @@ import com.dgd.earthquakes.BaseApplication;
 import com.dgd.earthquakes.data.IRepo;
 
 /**
- * Created by max on 04/10/17.
+ * Created by max
+ * on 04/10/17.
  */
 
 public class Presenter<T> {

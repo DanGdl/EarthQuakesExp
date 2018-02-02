@@ -29,4 +29,9 @@ public class SplashHostActivity extends FragmentHostActivity<SplashScreenContrac
     public void proceedFromSplash() {
         startActivity(MainHostActivity.getIntent(SplashHostActivity.this));
     }
+
+    @Override
+    public void showProgress(String title, int msgResId) {
+        showProgress(title, getString(msgResId));
+    }
 }

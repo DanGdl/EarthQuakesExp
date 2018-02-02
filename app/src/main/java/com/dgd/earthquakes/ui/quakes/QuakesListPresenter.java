@@ -34,7 +34,7 @@ class QuakesListPresenter extends Presenter<QuackesScreenContract.IQuakesListVie
 
     @Override
     public void checkNewEarthQuakes() {
-        view.showProgress();
+        view.showProgress("", R.string.wait_please);
         getRepo().checkNewEarthquakes(new IQuakesCallbackListener() {
             @Override
             public void onNetworkError(String errorMessage, int errorCode) {
@@ -55,7 +55,7 @@ class QuakesListPresenter extends Presenter<QuackesScreenContract.IQuakesListVie
     @Override
     public void getNextBulk(long lastDate) {
         if(lastDate != -1 && query.isEmpty()){
-            view.showProgress();
+            view.showProgress("", R.string.wait_please);
             Date end = new Date(lastDate);
             Date start = new Date(lastDate);
             start.setDate(start.getDate() - 1);

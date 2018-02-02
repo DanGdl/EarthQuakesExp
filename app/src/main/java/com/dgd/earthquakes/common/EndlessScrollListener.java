@@ -4,14 +4,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 /**
- * Created by hanan on 08-Dec-16.
+ * Created by hanan
+ * on 08-Dec-16.
  */
 
 public abstract class EndlessScrollListener extends RecyclerView.OnScrollListener {
 
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 3;
+    private final int visibleThreshold = 5;
     // The current offset index of data you have loaded
     private int currentPage = 0;
     // The total number of items in the dataset after the last load
@@ -23,7 +24,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
 
     private boolean reverseDirection;
 
-    public EndlessScrollListener() {}
+    EndlessScrollListener() {}
 
     public EndlessScrollListener(boolean reverseDirection) {
         this.reverseDirection = reverseDirection;

@@ -4,7 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by Dan on 20/08/2017.
+ * Created by Dan
+ * on 20/08/2017.
  */
 
 public abstract class CommonViewHolder<T> extends RecyclerView.ViewHolder {

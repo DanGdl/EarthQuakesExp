@@ -6,7 +6,8 @@ import com.dgd.earthquakes.data.IRepo;
 import com.dgd.earthquakes.data.Repo;
 
 /**
- * Created by Max on 30-Apr-17.
+ * Created by Max
+ * on 30-Apr-17.
  */
 public class BaseApplication extends Application{
 
