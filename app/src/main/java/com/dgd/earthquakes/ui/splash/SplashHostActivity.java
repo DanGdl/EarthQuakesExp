@@ -7,13 +7,15 @@ import com.dgd.earthquakes.common.HostedFragment;
 import com.dgd.earthquakes.ui.quakes.MainHostActivity;
 
 /**
- * Created by Max on 01-May-17.
+ * Created by Max
+ * on 01-May-17.
  */
 
-public class SplashHostActivity extends FragmentHostActivity<ISplashPresenter> implements ISplashView {
+public class SplashHostActivity extends FragmentHostActivity<SplashScreenContract.ISplashPresenter>
+        implements SplashScreenContract.ISplashView {
 
     @Override
-    protected ISplashPresenter setupPresenter() {
+    protected SplashScreenContract.ISplashPresenter setupPresenter() {
         return new SplashPresenter(this);
     }
 

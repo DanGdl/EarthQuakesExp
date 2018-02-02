@@ -10,12 +10,14 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by max on 04/10/17.
+ * Created by max
+ * on 04/10/17.
  */
 
-public class SplashPresenter extends Presenter<ISplashView> implements ISplashPresenter {
+public class SplashPresenter extends Presenter<SplashScreenContract.ISplashView>
+        implements SplashScreenContract.ISplashPresenter {
 
-    public SplashPresenter(ISplashView view) {
+    SplashPresenter(SplashScreenContract.ISplashView view) {
         super(view);
     }
 

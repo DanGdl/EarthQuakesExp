@@ -10,17 +10,17 @@ import com.dgd.earthquakes.models.Quake;
 
 import io.realm.RealmResults;
 
-public class MainHostActivity extends FragmentHostActivity<IQuakesListPresenter>
-        implements IEarthQuakesFragmentHost, IQuakesListView {
+public class MainHostActivity extends FragmentHostActivity<QuackesScreenContract.IQuakesListPresenter>
+        implements QuackesFragmentContract.IEarthQuakesFragmentHost, QuackesScreenContract.IQuakesListView {
 
-    private IEarthQuakesFragment earthQuakesFragment;
+    private QuackesFragmentContract.IEarthQuakesFragment earthQuakesFragment;
 
     public static Intent getIntent(Context context){
         return new Intent(context, MainHostActivity.class);
     }
 
     @Override
-    protected IQuakesListPresenter setupPresenter() {
+    protected QuackesScreenContract.IQuakesListPresenter setupPresenter() {
         return new QuakesListPresenter(this);
     }
 
@@ -32,8 +32,8 @@ public class MainHostActivity extends FragmentHostActivity<IQuakesListPresenter>
     }
 
     @Override
-	public void getEarthQuakes(String query) {
-        presenter.getEarthQuakes(query);
+	public void getEarthQuakes(SearchDTO searchData) {
+        presenter.getEarthQuakes(searchData);
 	}
 
 	@Override

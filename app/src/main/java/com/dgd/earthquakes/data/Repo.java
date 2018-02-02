@@ -9,6 +9,7 @@ import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
 import com.dgd.earthquakes.data.network.infra.QuakeData;
 import com.dgd.earthquakes.data.prefs.SharedPrefsManager;
 import com.dgd.earthquakes.models.Quake;
+import com.dgd.earthquakes.ui.quakes.SearchDTO;
 
 import java.util.Date;
 import java.util.List;
@@ -20,7 +21,8 @@ import io.realm.RealmResults;
 import io.realm.Sort;
 
 /**
- * Created by Max on 23-Jun-17.
+ * Created by Max
+ * on 23-Jun-17.
  */
 
 public class Repo implements IRepo {
@@ -63,11 +65,12 @@ public class Repo implements IRepo {
     }
 
     @Override
-    public RealmResults<Quake> getAllQuakes(String query) {
+    public RealmResults<Quake> getAllQuakes(SearchDTO searchParams) {
         openRealm();
         RealmQuery<Quake> q = realm.where(Quake.class);
-        if(!TextUtils.isEmpty(query)){
-            q.contains("title", query);
+        // todo Dan: impl search by other fields
+        if(!TextUtils.isEmpty(searchParams.query)){
+            q.contains("title", searchParams.query);
         }
         return q.findAllSorted("date", Sort.DESCENDING);
     }

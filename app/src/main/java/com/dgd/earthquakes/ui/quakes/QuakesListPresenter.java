@@ -17,18 +17,18 @@ import io.realm.RealmResults;
  * on 04/10/17.
  */
 
-class QuakesListPresenter extends Presenter<IQuakesListView> implements IQuakesListPresenter {
+class QuakesListPresenter extends Presenter<QuackesScreenContract.IQuakesListView> implements QuackesScreenContract.IQuakesListPresenter {
 
-    private String query;
+    private SearchDTO query;
 
-    QuakesListPresenter(IQuakesListView view) {
+    QuakesListPresenter(QuackesScreenContract.IQuakesListView view) {
         super(view);
     }
 
     @Override
-    public void getEarthQuakes(String query) {
-        this.query = query;
-        RealmResults<Quake> quakes = getRepo().getAllQuakes(query);
+    public void getEarthQuakes(SearchDTO searchParams) {
+        this.query = searchParams;
+        RealmResults<Quake> quakes = getRepo().getAllQuakes(searchParams);
         view.updateEarthQuakes(quakes);
     }
 
@@ -54,7 +54,7 @@ class QuakesListPresenter extends Presenter<IQuakesListView> implements IQuakesL
 
     @Override
     public void getNextBulk(long lastDate) {
-        if(lastDate != -1 && (query == null || query.isEmpty())){
+        if(lastDate != -1 && query.isEmpty()){
             view.showProgress();
             Date end = new Date(lastDate);
             Date start = new Date(lastDate);

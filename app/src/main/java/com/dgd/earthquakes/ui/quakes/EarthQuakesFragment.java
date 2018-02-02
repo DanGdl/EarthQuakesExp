@@ -18,8 +18,9 @@ import io.realm.RealmResults;
  * on 01-May-17.
  */
 
-public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHost, Quake> implements
-        IEarthQuakesFragment, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class EarthQuakesFragment extends RecyclerFragment<QuackesFragmentContract.IEarthQuakesFragmentHost, Quake>
+        implements QuackesFragmentContract.IEarthQuakesFragment, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+
     private static final float TRANSLATE = -500;
 
     public static EarthQuakesFragment newInstance(){
@@ -49,15 +50,14 @@ public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHo
         binding.searchParams.toTime.setOnClickListener(this);
         binding.searchParams.toDate.setOnClickListener(this);
 
-        binding.searchParams.getRoot().animate().translationYBy(TRANSLATE)
-                .setDuration(1).start();
+        binding.searchParams.getRoot().animate().translationYBy(TRANSLATE).setDuration(1).start();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if(host != null){
-            host.getEarthQuakes("");
+            host.getEarthQuakes(null);
         }
     }
 
@@ -85,20 +85,29 @@ public class EarthQuakesFragment extends RecyclerFragment<IEarthQuakesFragmentHo
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if(id == R.id.searchBtn){
-            // todo get search dto
-            host.getEarthQuakes(binding.toolbarInc.search.getText().toString());
+        if (id == R.id.searchBtn) {
+            if(host != null) {
+                SearchDTO.SearchParamsBuilder builder = SearchDTO.createBuilder();
+                builder.setQuery(binding.toolbarInc.search.getText().toString());
+                builder.setFromTime(binding.searchParams.fromTime.getText().toString());
+                builder.setFromDate(binding.searchParams.fromDate.getText().toString());
+                builder.setFromMagnitude(binding.searchParams.fromMagnitude.getText().toString());
+                builder.setToTime(binding.searchParams.toTime.getText().toString());
+                builder.setToDate(binding.searchParams.toDate.getText().toString());
+                builder.setToMagnitude(binding.searchParams.toMagnitude.getText().toString());
+                host.getEarthQuakes(builder.build());
+            }
         }
-        else if(id == R.id.fromTime){
+        else if (id == R.id.fromTime) {
             // todo show picker dialog
         }
-        else if(id == R.id.fromDate){
+        else if (id == R.id.fromDate) {
             // todo show picker dialog
         }
-        else if(id == R.id.toTime){
+        else if (id == R.id.toTime) {
             // todo show picker dialog
         }
-        else if(id == R.id.toDate){
+        else if (id == R.id.toDate) {
             // todo show picker dialog
         }
     }

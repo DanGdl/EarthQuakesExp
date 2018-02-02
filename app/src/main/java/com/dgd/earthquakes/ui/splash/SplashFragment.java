@@ -12,10 +12,12 @@ import com.dgd.earthquakes.common.HostedFragment;
 import com.dgd.earthquakes.databinding.FragmentSplashBinding;
 
 /**
- * Created by Max on 01-May-17.
+ * Created by Max
+ * on 01-May-17.
  */
 
-public class SplashFragment extends HostedFragment<ISplashFragmentHost> implements ISplashFragment {
+public class SplashFragment extends HostedFragment<SplashFragmentContract.ISplashFragmentHost>
+        implements SplashFragmentContract.ISplashFragment {
 
     public static SplashFragment newInstance(){
         return new SplashFragment();
