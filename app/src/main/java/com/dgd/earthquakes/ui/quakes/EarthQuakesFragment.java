@@ -94,38 +94,39 @@ public class EarthQuakesFragment extends RecyclerFragment<QuackesFragmentContrac
         int id = view.getId();
         if (id == R.id.searchBtn) {
             if(host != null) {
-                SearchDTO.SearchParamsBuilder builder = SearchDTO.createBuilder();
-                builder.setQuery(binding.toolbarInc.search.getText().toString());
-                builder.setFromTime(binding.searchParams.fromTime.getText().toString());
-                builder.setFromDate(binding.searchParams.fromDate.getText().toString());
-                builder.setFromMagnitude(binding.searchParams.fromMagnitude.getText().toString());
-                builder.setToTime(binding.searchParams.toTime.getText().toString());
-                builder.setToDate(binding.searchParams.toDate.getText().toString());
-                builder.setToMagnitude(binding.searchParams.toMagnitude.getText().toString());
-                host.getEarthQuakes(builder.build());
+                SearchDTO searchData = SearchDTO.createBuilder()
+                    .setQuery(binding.toolbarInc.search.getText().toString())
+                    .setFromTime(binding.searchParams.fromTime.getText().toString())
+                    .setFromDate(binding.searchParams.fromDate.getText().toString())
+                    .setFromMagnitude(binding.searchParams.fromMagnitude.getText().toString())
+                    .setToTime(binding.searchParams.toTime.getText().toString())
+                    .setToDate(binding.searchParams.toDate.getText().toString())
+                    .setToMagnitude(binding.searchParams.toMagnitude.getText().toString())
+                    .build();
+                host.getEarthQuakes(searchData);
             }
         }
         else if (id == R.id.fromTime) {
-            new TimePickerDialog(getActivity(), (TimePicker timePicker, int h, int m) -> {
-                binding.searchParams.fromTime.setText(String.format(Locale.getDefault(), "%1$2d : %2$2d", h, m));
-            }, 0, 0, true).show();
+            new TimePickerDialog(getActivity(), (TimePicker timePicker, int h, int m) ->
+                binding.searchParams.fromTime.setText(String.format(Locale.getDefault(), "%1$2d : %2$2d", h, m)),
+            0, 0, true).show();
         }
         else if (id == R.id.toTime) {
-            new TimePickerDialog(getActivity(), (TimePicker timePicker, int h, int m) -> {
-                binding.searchParams.toTime.setText(String.format(Locale.getDefault(), "%1$2d : %2$2d", h, m));
-            }, 0, 0, true).show();
+            new TimePickerDialog(getActivity(), (TimePicker timePicker, int h, int m) ->
+                binding.searchParams.toTime.setText(String.format(Locale.getDefault(), "%1$2d : %2$2d", h, m)),
+            0, 0, true).show();
         }
         else if (id == R.id.fromDate) {
             Calendar calendar = Calendar.getInstance();
-            new DatePickerDialog(getActivity(), (DatePicker datePicker, int y, int m, int d) -> {
-                binding.searchParams.fromDate.setText(String.format(Locale.getDefault(), "%1$2d.%2$2d.%3$4d", d, m, y));
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+            new DatePickerDialog(getActivity(), (DatePicker datePicker, int y, int m, int d) ->
+                binding.searchParams.fromDate.setText(String.format(Locale.getDefault(), "%1$2d.%2$2d.%3$4d", d, m, y)),
+            calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
         }
         else if (id == R.id.toDate) {
             Calendar calendar = Calendar.getInstance();
-            new DatePickerDialog(getActivity(), (DatePicker datePicker, int y, int m, int d) -> {
-                binding.searchParams.toDate.setText(String.format(Locale.getDefault(), "%1$2d.%2$2d.%3$4d", d, m, y));
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+            new DatePickerDialog(getActivity(), (DatePicker datePicker, int y, int m, int d) ->
+                binding.searchParams.toDate.setText(String.format(Locale.getDefault(), "%1$2d.%2$2d.%3$4d", d, m, y)),
+            calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
         }
     }
 

@@ -57,32 +57,39 @@ public class SearchDTO {
             return new SearchDTO(query, fromTime, fromDate, fromMagnitude, toTime, toDate, toMagnitude);
         }
 
-        void setQuery(String query) {
+        SearchParamsBuilder setQuery(String query) {
             this.query = query;
+            return this;
         }
 
-        void setFromTime(String fromTime) {
+        SearchParamsBuilder setFromTime(String fromTime) {
             this.fromTime = fromTime;
+            return this;
         }
 
-        void setFromDate(String fromDate) {
+        SearchParamsBuilder setFromDate(String fromDate) {
             this.fromDate = fromDate;
+            return this;
         }
 
-        void setToTime(String toTime) {
+        SearchParamsBuilder setToTime(String toTime) {
             this.toTime = toTime;
+            return this;
         }
 
-        void setToDate(String toDate) {
+        SearchParamsBuilder setToDate(String toDate) {
             this.toDate = toDate;
+            return this;
         }
 
-        void setFromMagnitude(String fromMagnitude) {
+        SearchParamsBuilder setFromMagnitude(String fromMagnitude) {
             this.fromMagnitude = fromMagnitude;
+            return this;
         }
 
-        void setToMagnitude(String toMagnitude) {
+        SearchParamsBuilder setToMagnitude(String toMagnitude) {
             this.toMagnitude = toMagnitude;
+            return this;
         }
     }
 }
