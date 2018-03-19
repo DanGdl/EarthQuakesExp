@@ -7,7 +7,6 @@ import com.dgd.earthquakes.data.network.NetworkManager;
 import com.dgd.earthquakes.data.prefs.SharedPrefsManager;
 import com.dgd.earthquakes.ui.quakes.QuackesScreenContract;
 import com.dgd.earthquakes.ui.quakes.QuakesListPresenter;
-import com.dgd.earthquakes.ui.splash.SplashHostActivity;
 import com.dgd.earthquakes.ui.splash.SplashPresenter;
 import com.dgd.earthquakes.ui.splash.SplashScreenContract;
 

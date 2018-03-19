@@ -1,14 +1,12 @@
 package com.dgd.earthquakes.common;
 
 import android.app.ProgressDialog;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.dgd.earthquakes.R;
-import com.dgd.earthquakes.databinding.ActivityMainBinding;
 
 /**
  * Created by Dan
@@ -18,15 +16,14 @@ import com.dgd.earthquakes.databinding.ActivityMainBinding;
 public abstract class FragmentHostActivity<T> extends AppCompatActivity implements IFragmentHostActivity {
     private ProgressDialog mProgressDialog;
     private boolean onForeground = false;
-    protected ActivityMainBinding binding;
     protected T presenter;
     private HostedFragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutResId());
         presenter = setupPresenter();
-        binding = DataBindingUtil.setContentView(this, getLayoutResId());
         setFragment(getFirstFragment(savedInstanceState));
     }
 

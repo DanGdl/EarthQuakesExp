@@ -12,7 +12,7 @@ import com.dgd.earthquakes.ui.quakes.MainHostActivity;
  * on 01-May-17.
  */
 
-public class SplashHostActivity extends FragmentHostActivity<SplashScreenContract.ISplashPresenter>
+public class SplashActivity extends FragmentHostActivity<SplashScreenContract.ISplashPresenter>
         implements SplashScreenContract.ISplashView {
 
     @Override
@@ -28,7 +28,7 @@ public class SplashHostActivity extends FragmentHostActivity<SplashScreenContrac
 
     @Override
     public void proceedFromSplash() {
-        startActivity(MainHostActivity.getIntent(SplashHostActivity.this));
+        startActivity(MainHostActivity.getIntent(SplashActivity.this));
     }
 
     @Override
