@@ -2,7 +2,7 @@ package com.dgd.earthquakes.ui.quakes;
 
 import com.dgd.earthquakes.models.Quake;
 
-import io.realm.RealmResults;
+import java.util.List;
 
 /**
  * Created by max
@@ -12,7 +12,7 @@ import io.realm.RealmResults;
 public class QuackesFragmentContract {
 
     public interface IEarthQuakesFragment {
-        void updateEarthQuakes(RealmResults<Quake> quakes);
+        void updateEarthQuakes(List<Quake> quakes);
     }
 
     interface IEarthQuakesFragmentHost {

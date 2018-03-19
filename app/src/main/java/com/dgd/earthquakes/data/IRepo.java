@@ -8,8 +8,6 @@ import com.dgd.earthquakes.ui.quakes.SearchDTO;
 import java.util.Date;
 import java.util.List;
 
-import io.realm.RealmResults;
-
 /**
  * Created by Max
  * on 23-Jun-17.
@@ -21,7 +19,7 @@ public interface IRepo {
 
     void checkNewEarthquakes(IQuakesCallbackListener listener);
 
-    RealmResults<Quake> getAllQuakes(SearchDTO searchParams);
+    List<Quake> getAllQuakes(SearchDTO searchParams);
 
     void closeRealm();
 

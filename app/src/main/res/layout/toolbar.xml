@@ -47,8 +47,12 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentEnd="true"
             android:padding="10dp"
+<<<<<<< HEAD
             android:contentDescription="@string/empty"
             />
+=======
+            android:contentDescription="@string/empty"/>
+>>>>>>> m2
         <!--android:src="@drawable/ic_menu_search_holo_dark"-->
 
     </RelativeLayout>

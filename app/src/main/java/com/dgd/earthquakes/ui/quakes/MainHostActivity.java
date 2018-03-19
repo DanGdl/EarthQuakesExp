@@ -8,7 +8,7 @@ import com.dgd.earthquakes.common.FragmentHostActivity;
 import com.dgd.earthquakes.common.HostedFragment;
 import com.dgd.earthquakes.models.Quake;
 
-import io.realm.RealmResults;
+import java.util.List;
 
 public class MainHostActivity extends FragmentHostActivity<QuackesScreenContract.IQuakesListPresenter>
         implements QuackesFragmentContract.IEarthQuakesFragmentHost, QuackesScreenContract.IQuakesListView {
@@ -47,7 +47,7 @@ public class MainHostActivity extends FragmentHostActivity<QuackesScreenContract
     }
 
     @Override
-    public void updateEarthQuakes(RealmResults<Quake> quakes) {
+    public void updateEarthQuakes(List<Quake> quakes) {
         earthQuakesFragment.updateEarthQuakes(quakes);
     }
 

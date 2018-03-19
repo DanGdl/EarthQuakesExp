@@ -10,8 +10,6 @@ import com.dgd.earthquakes.models.Quake;
 import java.util.Date;
 import java.util.List;
 
-import io.realm.RealmResults;
-
 /**
  * Created by max
  * on 04/10/17.
@@ -28,7 +26,7 @@ class QuakesListPresenter extends Presenter<QuackesScreenContract.IQuakesListVie
     @Override
     public void getEarthQuakes(SearchDTO searchParams) {
         this.query = searchParams;
-        RealmResults<Quake> quakes = getRepo().getAllQuakes(searchParams);
+        List<Quake> quakes = getRepo().getAllQuakes(searchParams);
         view.updateEarthQuakes(quakes);
     }
 

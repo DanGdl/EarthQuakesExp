@@ -15,12 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
- * Created by Max on 01-May-17.
+ * Created by Max
+ * on 01-May-17.
  */
 public class EarthQuakesAdapter extends CommonRecyclerAdapter<Quake> {
     private static SimpleDateFormat mSDF = new SimpleDateFormat("HH:mm, yyyy.MM.dd", Locale.getDefault());
 
-    public EarthQuakesAdapter(Context context, IOnItemClickListener<Quake> listener) {
+    EarthQuakesAdapter(Context context, IOnItemClickListener<Quake> listener) {
         super(context, listener);
     }
 
@@ -30,7 +31,7 @@ public class EarthQuakesAdapter extends CommonRecyclerAdapter<Quake> {
         return new QuakeVH(cardBinding);
     }
 
-    public long getLastDate() {
+    long getLastDate() {
         if(items != null && !items.isEmpty()) {
             return items.get(getItemCount() - 1).getDate().getTime();
         }

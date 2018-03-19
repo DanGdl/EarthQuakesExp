@@ -16,9 +16,8 @@ import com.dgd.earthquakes.common.RecyclerFragment;
 import com.dgd.earthquakes.models.Quake;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
-
-import io.realm.RealmResults;
 
 /**
  * Created by Max
@@ -68,7 +67,7 @@ public class EarthQuakesFragment extends RecyclerFragment<QuackesFragmentContrac
         }
     }
 
-    public void updateEarthQuakes(RealmResults<Quake> quakes){
+    public void updateEarthQuakes(List<Quake> quakes){
         binding.toolbarInc.toolbarIcon.requestFocus();
         if(adapter != null){
             adapter.setItems(quakes);
