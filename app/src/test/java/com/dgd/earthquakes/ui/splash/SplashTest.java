@@ -1,5 +1,8 @@
 package com.dgd.earthquakes.ui.splash;
 
+import com.dgd.earthquakes.BaseApplication;
+
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -9,8 +12,15 @@ import org.junit.Test;
 
 public class SplashTest {
 
+    @Before
+    public void setupApplication(){
+        new BaseApplication();
+    }
+
     @Test
     public void test(){
-        new SplashActivity();
+        SplashActivity a = new SplashActivity();
+        a.onPostCreate();
+        a.onRestoreInstanceState(a.getBundle());
     }
 }
