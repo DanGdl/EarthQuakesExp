@@ -7,7 +7,7 @@ import com.dgd.earthquakes.common.IView;
  * on 2/2/18.
  */
 
-class SplashScreenContract {
+public class SplashScreenContract {
 
     public interface ISplashPresenter {
         void updateQuakes();

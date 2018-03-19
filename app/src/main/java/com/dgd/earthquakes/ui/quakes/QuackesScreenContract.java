@@ -10,8 +10,8 @@ import java.util.List;
  * on 2/2/18.
  */
 
-class QuackesScreenContract {
-    interface IQuakesListPresenter {
+public class QuackesScreenContract {
+    public interface IQuakesListPresenter {
         void getEarthQuakes(SearchDTO searchParams);
 
         void checkNewEarthQuakes();
@@ -19,7 +19,7 @@ class QuackesScreenContract {
         void getNextBulk(long lastDate);
     }
 
-    interface IQuakesListView extends IView {
+    public interface IQuakesListView extends IView {
         void updateEarthQuakes(List<Quake> quakes);
     }
 }

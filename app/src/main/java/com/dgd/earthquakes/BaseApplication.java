@@ -19,7 +19,7 @@ public class BaseApplication extends Application{
     public void onCreate() {
         super.onCreate();
         mSingleton = this;
-        repository = new Repo();
+        repository = Injection.getRepository();
         lifecycleListener = new LifeCycleListener(repository);
         registerActivityLifecycleCallbacks(lifecycleListener);
     }

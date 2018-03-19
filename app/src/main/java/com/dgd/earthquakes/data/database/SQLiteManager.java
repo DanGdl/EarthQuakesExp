@@ -46,6 +46,13 @@ public class SQLiteManager implements IDataBase {
         return mDbHelper.getReadableDatabase();
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        close();
+        super.finalize();
+    }
+
+    @Override
     public void saveQuakes(List<QuakeData> quakes) {
         SQLiteDatabase db = openWritable();
         ContentValues cv = new ContentValues();
@@ -67,9 +74,9 @@ public class SQLiteManager implements IDataBase {
                 db.insert(DBHelper.TABLE_QUAKES, null, cv);
             }
         }
-        close();
     }
 
+    @Override
     public List<IQuake> getQuakesBulk(long date) {
         List<IQuake> quakes = new ArrayList<>();
         Cursor c;
@@ -91,7 +98,6 @@ public class SQLiteManager implements IDataBase {
             } while (counter < 20 && c.moveToPrevious());
             c.close();
         }
-        close();
         return quakes;
     }
 

@@ -15,11 +15,11 @@ import java.util.List;
  * on 04/10/17.
  */
 
-class QuakesListPresenter extends Presenter<QuackesScreenContract.IQuakesListView> implements QuackesScreenContract.IQuakesListPresenter {
+public class QuakesListPresenter extends Presenter<QuackesScreenContract.IQuakesListView> implements QuackesScreenContract.IQuakesListPresenter {
 
     private SearchDTO query;
 
-    QuakesListPresenter(QuackesScreenContract.IQuakesListView view) {
+    public QuakesListPresenter(QuackesScreenContract.IQuakesListView view) {
         super(view);
     }
 
@@ -45,7 +45,7 @@ class QuakesListPresenter extends Presenter<QuackesScreenContract.IQuakesListVie
                 view.hideProgress();
                 IRepo repo = getRepo();
                 repo.saveLastUpdate(new Date().getTime());
-                repo.saveToRealm(quakes); // real will update view automatically
+                repo.save(quakes); // real will update view automatically
             }
         });
     }
@@ -60,14 +60,16 @@ class QuakesListPresenter extends Presenter<QuackesScreenContract.IQuakesListVie
             getRepo().getEarthquakes(start, end, new IQuakesCallbackListener() {
                 @Override
                 public void onNetworkError(String errorMessage, int errorCode) {
-                    view.hideProgress();
                     view.showMessage(R.string.shit, errorMessage);
+
+                    view.hideProgress();
                 }
 
                 @Override
                 public void onNetworkSuccess(List<QuakeData> quakes) {
                     view.hideProgress();
-                    getRepo().saveToRealm(quakes);
+                    getRepo().save(quakes);
+                    
                 }
             });
         }

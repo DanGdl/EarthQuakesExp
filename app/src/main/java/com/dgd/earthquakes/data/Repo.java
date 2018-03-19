@@ -1,10 +1,12 @@
 package com.dgd.earthquakes.data;
 
+import com.dgd.earthquakes.data.database.IDataBase;
 import com.dgd.earthquakes.data.database.SQLiteManager;
 import com.dgd.earthquakes.data.network.INetworkManager;
 import com.dgd.earthquakes.data.network.NetworkManager;
 import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
 import com.dgd.earthquakes.data.network.infra.QuakeData;
+import com.dgd.earthquakes.data.prefs.IPrefs;
 import com.dgd.earthquakes.data.prefs.SharedPrefsManager;
 import com.dgd.earthquakes.models.Quake;
 import com.dgd.earthquakes.ui.quakes.SearchDTO;
@@ -19,41 +21,29 @@ import java.util.List;
  */
 
 public class Repo implements IRepo {
-    private INetworkManager mNetwork;
-    private SQLiteManager realm;
+    private final IPrefs prefs;
+    private final INetworkManager network;
+    private final IDataBase dataBase;
 
-    public Repo() {
-        mNetwork = new NetworkManager();
-
-        openRealm();
-    }
-
-    private void openRealm() {
-        if(realm != null){
-            return;
-        }
-
-        realm = SQLiteManager.getInstance();
-    }
-
-    @Override
-    public void closeRealm() {
+    public Repo(INetworkManager network, IDataBase dataBase, IPrefs prefs) {
+        this.network = network;
+        this.dataBase = dataBase;
+        this.prefs = prefs;
     }
 
     @Override
     public void getEarthquakes(Date start, Date end, IQuakesCallbackListener listener) {
-        mNetwork.getEarthquakes(start, end, listener);
+        network.getEarthquakes(start, end, listener);
     }
 
     @Override
     public void checkNewEarthquakes(IQuakesCallbackListener listener) {
-        mNetwork.checkNewEarthquakes(listener);
+        network.checkNewEarthquakes(listener);
     }
 
     @Override
     public List<Quake> getAllQuakes(SearchDTO searchParams) {
-        openRealm();
-//        RealmQuery<Quake> q = realm.where(Quake.class);
+//        RealmQuery<Quake> q = dataBase.where(Quake.class);
 //        // todo Dan: impl search by other fields
 //        if(!TextUtils.isEmpty(searchParams.query)){
 //            q.contains("title", searchParams.query);
@@ -66,11 +56,11 @@ public class Repo implements IRepo {
 
     @Override
     public void saveLastUpdate(long time) {
-        SharedPrefsManager.getInstance().saveLastUpdateDate(time);
+        prefs.saveLastUpdateDate(time);
     }
 
     @Override
-    public void saveToRealm(List<QuakeData> quakes) {
-        realm.saveQuakes(quakes);
+    public void save(List<QuakeData> quakes) {
+        dataBase.saveQuakes(quakes);
     }
 }

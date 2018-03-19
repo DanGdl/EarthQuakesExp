@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.dgd.earthquakes.Injection;
 import com.dgd.earthquakes.common.FragmentHostActivity;
 import com.dgd.earthquakes.common.HostedFragment;
 import com.dgd.earthquakes.models.Quake;
@@ -21,7 +22,7 @@ public class MainHostActivity extends FragmentHostActivity<QuackesScreenContract
 
     @Override
     protected QuackesScreenContract.IQuakesListPresenter setupPresenter() {
-        return new QuakesListPresenter(this);
+        return Injection.getQuakesPresenter(this);
     }
 
     @Override

@@ -17,7 +17,7 @@ import java.util.List;
 public class SplashPresenter extends Presenter<SplashScreenContract.ISplashView>
         implements SplashScreenContract.ISplashPresenter {
 
-    SplashPresenter(SplashScreenContract.ISplashView view) {
+    public SplashPresenter(SplashScreenContract.ISplashView view) {
         super(view);
     }
 
@@ -37,7 +37,7 @@ public class SplashPresenter extends Presenter<SplashScreenContract.ISplashView>
                 view.hideProgress();
                 IRepo repo = getRepo();
                 repo.saveLastUpdate(new Date().getTime());
-                repo.saveToRealm(quakes);
+                repo.save(quakes);
                 view.proceedFromSplash();
             }
         });

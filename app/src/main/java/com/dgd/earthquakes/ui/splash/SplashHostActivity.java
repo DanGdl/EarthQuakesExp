@@ -2,6 +2,7 @@ package com.dgd.earthquakes.ui.splash;
 
 import android.os.Bundle;
 
+import com.dgd.earthquakes.Injection;
 import com.dgd.earthquakes.common.FragmentHostActivity;
 import com.dgd.earthquakes.common.HostedFragment;
 import com.dgd.earthquakes.ui.quakes.MainHostActivity;
@@ -16,7 +17,7 @@ public class SplashHostActivity extends FragmentHostActivity<SplashScreenContrac
 
     @Override
     protected SplashScreenContract.ISplashPresenter setupPresenter() {
-        return new SplashPresenter(this);
+        return Injection.getSplashPresenter(this);
     }
 
     @Override

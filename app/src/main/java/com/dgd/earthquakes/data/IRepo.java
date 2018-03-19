@@ -21,9 +21,7 @@ public interface IRepo {
 
     List<Quake> getAllQuakes(SearchDTO searchParams);
 
-    void closeRealm();
-
     void saveLastUpdate(long time);
 
-    void saveToRealm(List<QuakeData> quakes);
+    void save(List<QuakeData> quakes);
 }

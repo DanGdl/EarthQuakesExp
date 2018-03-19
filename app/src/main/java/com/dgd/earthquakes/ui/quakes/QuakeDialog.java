@@ -19,7 +19,7 @@ import java.util.Locale;
 public class QuakeDialog extends Dialog {
     private TextView mDetails;
 
-    public QuakeDialog(@NonNull Context context) {
+    QuakeDialog(@NonNull Context context) {
         super(context);
         init();
     }
