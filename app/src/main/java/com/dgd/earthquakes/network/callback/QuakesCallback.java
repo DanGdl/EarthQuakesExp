@@ -7,8 +7,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Max on 30-Apr-17.
+ * Created by Max
+ * on 30-Apr-17.
  */
+
 public class QuakesCallback implements Callback<QuakesResponse> {
     private IQuakesCallbackListener mListener;
 

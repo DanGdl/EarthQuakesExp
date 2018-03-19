@@ -17,10 +17,11 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by Max on 01-May-17.
+ * Created by Max
+ * on 01-May-17.
  */
 public class EarthQuakesAdapter extends RecyclerView.Adapter<EarthQuakesAdapter.QuakeVH> {
-    private static SimpleDateFormat mSDF = new SimpleDateFormat("HH:mm, yyyy.MM.dd", Locale.getDefault());
+    private static final SimpleDateFormat mSDF = new SimpleDateFormat("HH:mm, yyyy.MM.dd", Locale.getDefault());
     private Context mContext;
     private List<IQuake> mQuakes;
 

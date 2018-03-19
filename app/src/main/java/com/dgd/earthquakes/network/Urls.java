@@ -1,9 +1,10 @@
 package com.dgd.earthquakes.network;
 
 /**
- * Created by Max on 30-Apr-17.
+ * Created by Max
+ * on 30-Apr-17.
  */
 
-public class Urls {
-    public static final String BASE_URL = "https://earthquake.usgs.gov/fdsnws/event/1/";
+class Urls {
+    static final String BASE_URL = "https://earthquake.usgs.gov/fdsnws/event/1/";
 }

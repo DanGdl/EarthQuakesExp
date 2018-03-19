@@ -11,7 +11,8 @@ import com.dgd.earthquakes.util.IPrefs;
 import com.dgd.earthquakes.util.SharedPrefsManager;
 
 /**
- * Created by Max on 03-Apr-17.
+ * Created by Max
+ * on 03-Apr-17.
  */
 public abstract class BaseActivity extends AppCompatActivity {
 

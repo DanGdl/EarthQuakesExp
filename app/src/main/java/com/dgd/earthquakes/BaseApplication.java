@@ -3,7 +3,8 @@ package com.dgd.earthquakes;
 import android.app.Application;
 
 /**
- * Created by Max on 30-Apr-17.
+ * Created by Max
+ * on 30-Apr-17.
  */
 public class BaseApplication extends Application{
 

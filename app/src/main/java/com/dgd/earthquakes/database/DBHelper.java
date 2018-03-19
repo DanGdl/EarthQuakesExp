@@ -5,7 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by Max on 30-Apr-17.
+ * Created by Max
+ * on 30-Apr-17.
  */
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -36,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
             COLUMN_LAT       + " real " +
             ");";
 
-    public DBHelper(Context context) {
+    DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

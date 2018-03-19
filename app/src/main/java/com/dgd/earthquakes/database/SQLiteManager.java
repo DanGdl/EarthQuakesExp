@@ -19,7 +19,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Max on 30-Apr-17.
+ * Created by Max
+ * on 30-Apr-17.
  */
 
 public class SQLiteManager implements IDataBase {

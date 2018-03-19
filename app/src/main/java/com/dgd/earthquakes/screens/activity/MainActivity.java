@@ -49,7 +49,9 @@ public class MainActivity extends BaseActivity implements IEarthquakesFragmentHo
             @Override
             public void onNetworkSuccess(List<QuakeData> quakes) {
                 getDB().saveQuakes(quakes);
-                listener.quakesUpdated(getDB().getQuakesBulk(0));
+                if(listener != null) {
+                    listener.quakesUpdated(getDB().getQuakesBulk(0));
+                }
             }
         });
     }
@@ -71,7 +73,9 @@ public class MainActivity extends BaseActivity implements IEarthquakesFragmentHo
                 public void onNetworkSuccess(List<QuakeData> quakes) {
                     getDB().saveQuakes(quakes);
                     quakeModels.addAll(getDB().getQuakesBulk(lastDate));
-                    listener.quakesUpdated(quakeModels);
+                    if(listener != null) {
+                        listener.quakesUpdated(quakeModels);
+                    }
                 }
             });
         }

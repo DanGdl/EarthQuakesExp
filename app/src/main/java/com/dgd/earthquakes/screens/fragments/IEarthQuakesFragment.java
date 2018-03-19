@@ -5,7 +5,8 @@ import com.dgd.earthquakes.models.IQuake;
 import java.util.List;
 
 /**
- * Created by Max on 22-Jun-17.
+ * Created by Max
+ * on 22-Jun-17.
  */
 
 public interface IEarthQuakesFragment {

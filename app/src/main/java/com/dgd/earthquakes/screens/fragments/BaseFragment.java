@@ -4,7 +4,8 @@ import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 /**
- * Created by Max on 01-May-17.
+ * Created by Max
+ * on 01-May-17.
  */
 
 public abstract class BaseFragment extends Fragment {

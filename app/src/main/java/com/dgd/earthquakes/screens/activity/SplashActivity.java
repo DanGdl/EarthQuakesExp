@@ -12,7 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Max on 01-May-17.
+ * Created by Max
+ * on 01-May-17.
  */
 
 public class SplashActivity extends BaseActivity implements IQuakesCallbackListener, Runnable {

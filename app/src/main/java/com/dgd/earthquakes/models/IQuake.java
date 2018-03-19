@@ -5,7 +5,8 @@ import android.location.Location;
 import java.util.Date;
 
 /**
- * Created by Max on 22-Jun-17.
+ * Created by Max
+ * on 22-Jun-17.
  */
 
 public interface IQuake {

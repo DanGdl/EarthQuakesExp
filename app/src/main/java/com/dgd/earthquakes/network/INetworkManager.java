@@ -5,7 +5,8 @@ import com.dgd.earthquakes.network.callback.IQuakesCallbackListener;
 import java.util.Date;
 
 /**
- * Created by Max on 23-Jun-17.
+ * Created by Max
+ * on 23-Jun-17.
  */
 
 public interface INetworkManager {

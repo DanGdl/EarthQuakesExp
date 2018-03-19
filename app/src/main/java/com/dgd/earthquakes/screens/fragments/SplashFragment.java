@@ -11,7 +11,8 @@ import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.databinding.FragmentSplashBinding;
 
 /**
- * Created by Max on 01-May-17.
+ * Created by Max
+ * on 01-May-17.
  */
 
 public class SplashFragment extends BaseFragment {

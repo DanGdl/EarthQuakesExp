@@ -22,7 +22,8 @@ import com.dgd.earthquakes.screens.interfaces.IQuakesUpdated;
 import java.util.List;
 
 /**
- * Created by Max on 01-May-17.
+ * Created by Max
+ * on 01-May-17.
  */
 
 public class EarthQuakesFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener,

@@ -6,8 +6,10 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by Max on 01-May-17.
+ * Created by Max
+ * on 01-May-17.
  */
+
 public class Geometry {
 //    first - lng, second - lat
     @Expose

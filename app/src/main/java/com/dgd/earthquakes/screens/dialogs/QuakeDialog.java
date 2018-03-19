@@ -11,9 +11,11 @@ import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.models.IQuake;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
- * Created by Max on 02-May-17.
+ * Created by Max
+ * on 02-May-17.
  */
 
 public class QuakeDialog extends Dialog {
@@ -44,7 +46,7 @@ public class QuakeDialog extends Dialog {
     }
 
     public void setQuake(IQuake quake){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
         String dateString = sdf.format(quake.getDate());
 
         setTitle(dateString);

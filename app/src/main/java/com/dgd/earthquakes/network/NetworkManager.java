@@ -10,18 +10,20 @@ import com.google.gson.GsonBuilder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Max on 30-Apr-17.
+ * Created by Max
+ * on 30-Apr-17.
  */
 public class NetworkManager implements INetworkManager {
     private static NetworkManager ourInstance = new NetworkManager();
     private final IQuakesAPI mRetrofitInterface;
-    private final SimpleDateFormat mSDF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); // 2017-05-02T10:52:57
+    private final SimpleDateFormat mSDF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()); // 2017-05-02T10:52:57
 
     public static NetworkManager getInstance() {
         return ourInstance;
