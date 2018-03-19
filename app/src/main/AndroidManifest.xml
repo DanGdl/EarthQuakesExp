@@ -12,7 +12,7 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".screens.activity.SplashActivity"
+        <activity android:name=".ui.splash.SplashHostActivity"
             android:noHistory="true"
                   android:theme="@style/SplashScreen">
 
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".screens.activity.MainActivity"/>
+        <activity android:name=".ui.quakes.MainHostActivity"/>
 
     </application>
 
