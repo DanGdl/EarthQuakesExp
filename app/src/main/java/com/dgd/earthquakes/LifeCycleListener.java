@@ -11,8 +11,7 @@ import com.dgd.earthquakes.data.IRepo;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by dan
- * on 24/05/16.
+ * Created by dan on 24/05/16.
  */
 class LifeCycleListener implements Application.ActivityLifecycleCallbacks {
     private WeakReference<IFragmentHostActivity> mCurrentActivity;
