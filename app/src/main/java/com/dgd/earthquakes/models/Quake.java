@@ -1,63 +1,73 @@
 package com.dgd.earthquakes.models;
 
-import android.location.Location;
-
 import java.util.Date;
 
 public class Quake implements IQuake{
 
-	private Date mDate;
-	private Location mLocation;
-	private String mMagnitude;
-	private String mLink;
-	private String mId;
-	private String mTitle;
+	private String id;
+	private Date date;
+	private double latitude;
+	private double longitude;
+	private String magnitude;
+	private String link;
+	private String title;
 
 	public Date getDate() {
-		return mDate;
+		return date;
 	}
 
 	public void setDate(Date mDate) {
-		this.mDate = mDate;
+		this.date = mDate;
 	}
 
-	public Location getLocation() {
-		return mLocation;
+	public double getLatitude() {
+		return latitude;
 	}
 
-	public void setLocation(Location mLocation) {
-		this.mLocation = mLocation;
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 	public String getMagnitude() {
-		return mMagnitude;
+		return magnitude;
 	}
 
 	public void setMagnitude(String mMagnitude) {
-		this.mMagnitude = mMagnitude;
+		if(mMagnitude != null && mMagnitude.length() < 4){
+			mMagnitude += "0";
+		}
+		this.magnitude = mMagnitude;
 	}
 
 	public String getLink() {
-		return mLink;
+		return link;
 	}
 
 	public void setLink(String mLink) {
-		this.mLink = mLink;
+		this.link = mLink;
 	}
 
 	public String getId() {
-		return mId;
+		return id;
 	}
 
 	public void setId(String mId) {
-		this.mId = mId;
+		this.id = mId;
 	}
 
 	public String getTitle() {
-		return mTitle;
+		return title;
 	}
 
 	public void setTitle(String mTitle) {
-		this.mTitle = mTitle;
+		this.title = mTitle;
 	}
 }

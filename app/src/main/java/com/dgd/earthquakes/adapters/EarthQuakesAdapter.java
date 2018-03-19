@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.dgd.earthquakes.R;
 import com.dgd.earthquakes.databinding.QuakeDetailsBinding;
 import com.dgd.earthquakes.models.IQuake;
-import com.dgd.earthquakes.screens.dialogs.QuakeDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -76,9 +75,9 @@ public class EarthQuakesAdapter extends RecyclerView.Adapter<EarthQuakesAdapter.
         @Override
         public void onClick(View v) {
             IQuake q = mQuakes.get(getAdapterPosition());
-            QuakeDialog dialog = new QuakeDialog(mContext);
-            dialog.setQuake(q);
-            dialog.show();
+//            QuakeDialog dialog = new QuakeDialog(mContext);
+//            dialog.setQuake(q);
+//            dialog.show();
         }
     }
 }

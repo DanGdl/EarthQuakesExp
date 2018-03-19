@@ -1,7 +1,5 @@
 package com.dgd.earthquakes.models;
 
-import android.location.Location;
-
 import java.util.Date;
 
 /**
@@ -15,9 +13,13 @@ public interface IQuake {
 
     void setDate(Date mDate);
 
-    Location getLocation();
+    double getLatitude();
 
-    void setLocation(Location mLocation);
+    void setLatitude(double latitude);
+
+    double getLongitude();
+
+    void setLongitude(double longitude);
 
     String getMagnitude();
 
