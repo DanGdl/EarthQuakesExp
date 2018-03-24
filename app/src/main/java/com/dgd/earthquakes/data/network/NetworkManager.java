@@ -89,7 +89,7 @@ public class NetworkManager implements INetworkManager {
     }
 
     public void checkNewEarthquakes(IQuakesCallbackListener listener){
-        long lastUpdate = SharedPrefsManager.getInstance().getLastUpdateDate();
+        long lastUpdate = SharedPrefsManager.Companion.getInstance().getLastUpdateDate();
         getEarthquakes(lastUpdate, listener);
     }
 }
