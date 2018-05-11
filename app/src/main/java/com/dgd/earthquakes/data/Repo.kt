@@ -24,7 +24,7 @@ class Repo(private val network: INetworkManager, private val dataBase: IDataBase
         network.checkNewEarthquakes(listener)
     }
 
-    override fun getAllQuakes(searchParams: SearchDTO): List<Quake> {
+    override fun getAllQuakes(searchParams: SearchDTO?): List<Quake> {
 //        RealmQuery<Quake> q = dataBase.where(Quake.class);
 //        // todo Dan: impl search by other fields
 //        if(!TextUtils.isEmpty(searchParams.query)){
@@ -33,7 +33,6 @@ class Repo(private val network: INetworkManager, private val dataBase: IDataBase
 //        return q.findAllSorted("date", Sort.DESCENDING);
         return ArrayList()
     }
-
 
     override fun saveLastUpdate(time: Long) {
         prefs.saveLastUpdateDate(time)

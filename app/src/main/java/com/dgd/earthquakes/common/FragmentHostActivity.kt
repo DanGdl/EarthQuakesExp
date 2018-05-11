@@ -14,14 +14,15 @@ import com.dgd.earthquakes.R
 abstract class FragmentHostActivity<T : ScreenContract.IPresenter> : AppCompatActivity(), FragmentContract.IHost {
     private var mProgressDialog: ProgressDialog? = null
     private var onForeground = false
-    protected var presenter: T = setupPresenter()
+    protected lateinit var presenter: T
     private var currentFragment: HostedFragment<*>? = null
 
     private val layoutResId: Int
         get() = R.layout.activity_main
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        presenter = setupPresenter()
         setContentView(layoutResId)
         setFragment(getFirstFragment(savedInstanceState))
     }
@@ -66,12 +67,12 @@ abstract class FragmentHostActivity<T : ScreenContract.IPresenter> : AppCompatAc
         }
     }
 
-    override fun onStart() {
+    public override fun onStart() {
         super.onStart()
         onForeground = true
     }
 
-    override fun onPause() {
+    public override fun onPause() {
         onForeground = false
         super.onPause()
     }

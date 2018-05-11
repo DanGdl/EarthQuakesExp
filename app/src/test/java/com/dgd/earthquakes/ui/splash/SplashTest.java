@@ -20,7 +20,15 @@ public class SplashTest {
     @Test
     public void test(){
         SplashActivity a = new SplashActivity();
+        a.onCreate(a.getBundle());
         a.onPostCreate();
-        a.onRestoreInstanceState(a.getBundle());
+//        a.onRestoreInstanceState(a.getBundle());
+
+        a.onStart();
+        a.onResume();
+
+        a.onPause();
+        a.onStop();
+        a.onDestroy();
     }
 }

@@ -40,6 +40,11 @@ public class Fragment {
     public void onResume() {}
 
 
+    public void onStop() {}
+
+    public void onPause() {}
+
+    public void onDestroy() {}
 
     public void onDetach (){}
 }

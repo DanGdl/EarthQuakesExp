@@ -23,8 +23,8 @@ abstract class RecyclerFragment<T : FragmentContract.IHost, X> : HostedFragment<
     protected var adapter: CommonRecyclerAdapter<X>? = null
     protected var binding: FragmentRecyclerBinding? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater!!, R.layout.fragment_recycler, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_recycler, container, false)
         setHasProgress(true)
         initViews()
         return binding?.root

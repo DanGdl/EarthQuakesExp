@@ -2,6 +2,7 @@ package com.dgd.earthquakes.ui.quakes
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -26,10 +27,10 @@ class EarthQuakesFragment : RecyclerFragment<QuakesFragmentContract.IHost, Quake
     }
 
     override fun createAdapter(): CommonRecyclerAdapter<Quake> {
-        return EarthQuakesAdapter(activity, this)
+        return EarthQuakesAdapter(activity as Context, this)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.toolbarInc?.searchBtn?.setOnClickListener(this)
         binding?.toolbarInc?.extensionToggle?.setOnCheckedChangeListener(this)
@@ -57,7 +58,7 @@ class EarthQuakesFragment : RecyclerFragment<QuakesFragmentContract.IHost, Quake
     }
 
     override fun onItemClicked(item: Quake, position: Int) {
-        val dialog = QuakeDialog(activity)
+        val dialog = QuakeDialog(activity as Context)
         dialog.setQuake(item)
         dialog.show()
     }

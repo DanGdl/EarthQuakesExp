@@ -23,7 +23,6 @@ public class FragmentManager {
     }
 
     void onCommitTransaction(FragmentTransaction transaction) {
-        // todo Dan: create stack to put transaction here
         if(transaction.isAddToBackStack()){
             STACK.push(transaction);
         }
@@ -32,7 +31,6 @@ public class FragmentManager {
             STACK.push(transaction);
         }
         Fragment fragment = transaction.getFragment();
-        fragment.onAttach(activity);
         activity.onAttachFragment(fragment);
     }
 

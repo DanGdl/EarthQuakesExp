@@ -23,14 +23,13 @@ public class AppCompatActivity extends Context {
 
     public AppCompatActivity() {
         FM = new FragmentManager(this);
-        Bundle b = new Bundle();
-        onCreate(b);
     }
 
     public void onCreate(Bundle savedInstanceState){}
 
     public void onAttachFragment (Fragment fragment){
         this.fragment = fragment;
+        fragment.onAttach(this);
         fragment.onCreate(b);
     }
 
@@ -54,7 +53,7 @@ public class AppCompatActivity extends Context {
 
     public void onResume() {
         if(fragment != null) {
-            fragment.onStart();
+            fragment.onResume();
         }
     }
 
@@ -68,5 +67,23 @@ public class AppCompatActivity extends Context {
 
     public Bundle getBundle(){
         return b;
+    }
+
+    public void onPause(){
+        if(fragment != null) {
+            fragment.onPause();
+        }
+    }
+
+    public void onStop(){
+        if(fragment != null) {
+            fragment.onStop();
+        }
+    }
+
+    public void onDestroy(){
+        if(fragment != null) {
+            fragment.onDestroy();
+        }
     }
 }
