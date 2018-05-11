@@ -13,7 +13,7 @@ class ScreenContract {
 
         fun hideProgress()
 
-        fun showMessage(msgRes: Int, vararg message: String)
+        fun showMessage(messageRes: Int, vararg args: String)
     }
 
     interface IPresenter

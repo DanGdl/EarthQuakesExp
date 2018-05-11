@@ -76,7 +76,7 @@ abstract class FragmentHostActivity<T : ScreenContract.IPresenter> : AppCompatAc
         super.onPause()
     }
 
-    fun showMessage(strRes: Int, vararg args: String) {
-        Toast.makeText(this, getString(strRes, *args), Toast.LENGTH_SHORT).show()
+    fun showMessage(messageRes: Int, vararg args: String) {
+        Toast.makeText(this, getString(messageRes, *args), Toast.LENGTH_SHORT).show()
     }
 }
