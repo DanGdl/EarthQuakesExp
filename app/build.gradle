@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -6,7 +8,11 @@ android {
     defaultConfig {
         applicationId "com.dgd.earthquakes"
         minSdkVersion 19
+<<<<<<< HEAD
         targetSdkVersion 25
+=======
+        targetSdkVersion 26
+>>>>>>> a4d06082feb05941ffb54493007d656f976811a6
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,6 +36,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+<<<<<<< HEAD
 
     // support
     implementation 'com.android.support:animated-vector-drawable:27.1.1'
@@ -43,6 +50,26 @@ dependencies {
     implementation 'javax.annotation:javax.annotation-api:1.2'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
+=======
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'android'
+    })
+    // test lib
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.8.47'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.41"
+
+    // support
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:support-compat:27.1.1'
+    implementation 'com.android.support:animated-vector-drawable:27.1.1'
+>>>>>>> a4d06082feb05941ffb54493007d656f976811a6
 
     //retrofit
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
@@ -51,6 +78,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 
+<<<<<<< HEAD
     // json
     implementation 'com.google.code.gson:gson:2.8.2'
 
@@ -70,4 +98,28 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+=======
+    implementation 'javax.annotation:javax.annotation-api:1.2'
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    // json
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
+
+    // okHttp
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
+    kapt 'com.android.databinding:compiler:3.1.2'
+
+//    implementation 'com.github.DanGdl.AndroidCommonsLib:recycler-fragment-support-v7:0.0.9'
+}
+repositories {
+    mavenCentral()
+>>>>>>> a4d06082feb05941ffb54493007d656f976811a6
 }

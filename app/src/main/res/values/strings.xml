@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EatrhQuakes</string>
+    <string name="app_name">EarthQuakes</string>
     <string name="no_earthquake_implemented">Host activity must implement IEarthquakesFragmentHost</string>
     <string name="quake_time">Quake Time</string>
     <string name="quake_details">Magnitude %1$s \n %2$s \n %3$s</string>
@@ -14,5 +14,5 @@
     <string name="to_magnitude">To magnitude</string>
     <string name="time_zero">00:00</string>
     <string name="hint_date">dd/MM/YYYY</string>
-    <string name="wait_please">Wait please...</string>
+    <string name="wait_please">Wait please&#8230;</string>
 </resources>
