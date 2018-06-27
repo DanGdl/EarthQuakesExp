@@ -3,7 +3,6 @@ package com.dgd.earthquakes.data.network;
 import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
 import com.dgd.earthquakes.data.network.callback.QuakesCallback;
 import com.dgd.earthquakes.data.network.infra.QuakesResponse;
-import com.dgd.earthquakes.data.prefs.SharedPrefsManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -30,7 +29,6 @@ public class NetworkManager implements INetworkManager {
     private final SimpleDateFormat mSDF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()); // 2017-05-02T10:52:57
 
     public NetworkManager() {
-
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -88,8 +86,8 @@ public class NetworkManager implements INetworkManager {
         getEarthquakes(start, "NOW", listener);
     }
 
-    public void checkNewEarthquakes(IQuakesCallbackListener listener){
-        long lastUpdate = SharedPrefsManager.getInstance().getLastUpdateDate();
-        getEarthquakes(lastUpdate, listener);
+    @Override
+    public void checkNewEarthquakes(long lastUpdateDate, IQuakesCallbackListener listener){
+        getEarthquakes(lastUpdateDate, listener);
     }
 }

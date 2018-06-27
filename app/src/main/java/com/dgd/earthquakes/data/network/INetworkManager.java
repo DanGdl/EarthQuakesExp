@@ -12,5 +12,5 @@ import java.util.Date;
 public interface INetworkManager {
     void getEarthquakes(Date start, Date end, IQuakesCallbackListener listener);
 
-    void checkNewEarthquakes(IQuakesCallbackListener listener);
+    void checkNewEarthquakes(long lastUpdateDate, IQuakesCallbackListener listener);
 }

@@ -1,4 +1,4 @@
-package com.dgd.earthquakes.ui.splash;
+package com.dgd.earthquakes.ui.quakes;
 
 import com.mdgd.commons.contract.mvp.ViewContract;
 
@@ -7,7 +7,7 @@ import com.mdgd.commons.contract.mvp.ViewContract;
  * on 2/2/18.
  */
 
-public class SplashScreenContract {
+public class QuakesContract {
 
     public interface IPresenter extends ViewContract.IPresenter {}
 

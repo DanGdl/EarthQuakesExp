@@ -2,7 +2,8 @@ package com.dgd.earthquakes;
 
 import android.app.Application;
 
-import com.dgd.earthquakes.data.IRepo;
+import com.dgd.earthquakes.injection.ComponentProvider;
+import com.dgd.earthquakes.injection.Injection;
 
 /**
  * Created by Max
@@ -10,21 +11,9 @@ import com.dgd.earthquakes.data.IRepo;
  */
 public class BaseApplication extends Application {
 
-    private static BaseApplication mSingleton;
-    private IRepo repository;
-
     @Override
     public void onCreate() {
         super.onCreate();
-        mSingleton = this;
-        repository = Injection.getRepository();
-    }
-
-    public static BaseApplication getInstance() {
-        return mSingleton;
-    }
-
-    public IRepo getRepository(){
-        return repository;
+        Injection.setComponentProvider(new ComponentProvider(this));
     }
 }

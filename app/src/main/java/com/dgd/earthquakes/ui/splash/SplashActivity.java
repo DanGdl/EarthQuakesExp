@@ -1,38 +1,24 @@
 package com.dgd.earthquakes.ui.splash;
 
-import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
-import com.dgd.earthquakes.Injection;
-import com.dgd.earthquakes.common.FragmentHostActivity;
-import com.dgd.earthquakes.common.HostedFragment;
-import com.dgd.earthquakes.ui.quakes.MainHostActivity;
+import com.dgd.earthquakes.injection.Injection;
+import com.mdgd.commons.support.v7.fragment.HostActivity;
 
 /**
  * Created by Max
  * on 01-May-17.
  */
 
-public class SplashActivity extends FragmentHostActivity<SplashScreenContract.ISplashPresenter>
-        implements SplashScreenContract.ISplashView {
+public class SplashActivity extends HostActivity<SplashScreenContract.IPresenter> implements SplashScreenContract.IView {
 
     @Override
-    protected SplashScreenContract.ISplashPresenter setupPresenter() {
+    protected SplashScreenContract.IPresenter getPresenter() {
         return Injection.getSplashPresenter(this);
     }
 
     @Override
-    protected HostedFragment getFirstFragment(Bundle savedInstanceState) {
-        presenter.updateQuakes();
+    protected Fragment getFirstFragment() {
         return SplashFragment.newInstance();
-    }
-
-    @Override
-    public void proceedFromSplash() {
-        startActivity(MainHostActivity.getIntent(SplashActivity.this));
-    }
-
-    @Override
-    public void showProgress(String title, int msgResId) {
-        showProgress(title, getString(msgResId));
     }
 }

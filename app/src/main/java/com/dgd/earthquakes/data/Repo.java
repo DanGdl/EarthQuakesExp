@@ -1,15 +1,12 @@
 package com.dgd.earthquakes.data;
 
 import com.dgd.earthquakes.data.database.IDataBase;
-import com.dgd.earthquakes.data.database.SQLiteManager;
 import com.dgd.earthquakes.data.network.INetworkManager;
-import com.dgd.earthquakes.data.network.NetworkManager;
 import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
 import com.dgd.earthquakes.data.network.infra.QuakeData;
 import com.dgd.earthquakes.data.prefs.IPrefs;
-import com.dgd.earthquakes.data.prefs.SharedPrefsManager;
 import com.dgd.earthquakes.models.Quake;
-import com.dgd.earthquakes.ui.quakes.SearchDTO;
+import com.dgd.earthquakes.ui.quakes.fragment.SearchDTO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,7 +35,7 @@ public class Repo implements IRepo {
 
     @Override
     public void checkNewEarthquakes(IQuakesCallbackListener listener) {
-        network.checkNewEarthquakes(listener);
+        network.checkNewEarthquakes(prefs.getLastUpdateDate(), listener);
     }
 
     @Override

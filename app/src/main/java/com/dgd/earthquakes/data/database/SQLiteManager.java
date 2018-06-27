@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.dgd.earthquakes.BaseApplication;
 import com.dgd.earthquakes.data.network.infra.Geometry;
 import com.dgd.earthquakes.data.network.infra.Properties;
 import com.dgd.earthquakes.data.network.infra.QuakeData;
@@ -23,14 +22,10 @@ import java.util.List;
  */
 
 public class SQLiteManager implements IDataBase {
-    private static SQLiteManager mInstance = new SQLiteManager(BaseApplication.getInstance());
-    private DBHelper mDbHelper;
+    private final DBHelper mDbHelper;
+    // todo add lock?
 
-    public static SQLiteManager getInstance() {
-        return mInstance;
-    }
-
-    private SQLiteManager(Context context){
+    public SQLiteManager(Context context){
         mDbHelper = new DBHelper(context);
     }
 

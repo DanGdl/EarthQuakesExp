@@ -1,9 +1,8 @@
 package com.dgd.earthquakes.data.prefs;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
-import com.dgd.earthquakes.BaseApplication;
 
 /**
  * Created by Max
@@ -11,22 +10,29 @@ import com.dgd.earthquakes.BaseApplication;
  */
 public class SharedPrefsManager implements IPrefs {
     private static final String LAST_UPDATE = "last_update";
-    private static SharedPrefsManager ourInstance = new SharedPrefsManager();
-    private SharedPreferences mPrefs;
+    private final SharedPreferences mPrefs;
 
-    public static SharedPrefsManager getInstance() {
-        return ourInstance;
+    public SharedPrefsManager(Context appCtx) {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(appCtx);
     }
 
-    private SharedPrefsManager() {
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(BaseApplication.getInstance());
+    private SharedPreferences.Editor getEditor(){
+        return mPrefs.edit();
+    }
+
+    private void put(String key, long value){
+        getEditor().putLong(key, value).apply();
+    }
+
+    private long get(String key, long defValue){
+        return mPrefs.getLong(key, defValue);
     }
 
     public void saveLastUpdateDate(long millis){
-        mPrefs.edit().putLong(LAST_UPDATE, millis).apply();
+        put(LAST_UPDATE, millis);
     }
 
     public long getLastUpdateDate(){
-        return mPrefs.getLong(LAST_UPDATE, -1);
+        return get(LAST_UPDATE, -1);
     }
 }

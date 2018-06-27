@@ -3,7 +3,7 @@ package com.dgd.earthquakes.data;
 import com.dgd.earthquakes.data.network.callback.IQuakesCallbackListener;
 import com.dgd.earthquakes.data.network.infra.QuakeData;
 import com.dgd.earthquakes.models.Quake;
-import com.dgd.earthquakes.ui.quakes.SearchDTO;
+import com.dgd.earthquakes.ui.quakes.fragment.SearchDTO;
 
 import java.util.Date;
 import java.util.List;
